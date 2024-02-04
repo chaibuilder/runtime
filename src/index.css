@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+
+        --primary: 222.2 47.4% 11.2%;
+        --primary-foreground: 210 40% 98%;
+
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --ring: 215 20.2% 65.1%;
+
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+
+        --primary: 210 40% 98%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 85.7% 97.3%;
+
+        --ring: 217.2 32.6% 17.5%;
+    }
+}
+
+@layer base {
+
+    .rjsf {
+        @apply px-4;
+    }
+
+    .rjsf .form-group {
+        @apply flex flex-col;
+    }
+
+    .rjsf .form-group label {
+        @apply text-xs font-medium text-gray-500 dark:text-gray-300;
+    }
+
+    .rjsf .form-group input {
+        @apply text-xs px-2 py-1 mt-1 text-gray-700 dark:text-gray-200 bg-gray-200 dark:bg-gray-700 rounded-sm shadow-sm focus:outline-none focus:ring-primary focus:border-primary;
+    }
+
+    .ql-toolbar.ql-snow {
+        @apply bg-background border-border rounded-t-md !important;
+    }
+
+    .ql-container.ql-snow {
+        @apply bg-background bg-gray-200 dark:bg-gray-800 border-border rounded-b-md !important;
+    }
+
+    .btn.btn-info.btn-add.col-xs-12 {
+        @apply bg-blue-500 text-white w-5 h-5;
+    }
+
+    .placeholderContainer {
+        @apply relative;
+    }
+
+    .rjsf .form-group select {
+        @apply text-xs px-1 py-1 mt-1 text-gray-700 dark:text-gray-200 bg-gray-200 dark:bg-gray-700  border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary;
+    }
+
+    .rjsf > div > button[type="submit"] {
+        @apply hidden;
+    }
+
+    .rjsf > .form-group > fieldset > * {
+        @apply border-b border-border pb-3 pt-1;
+    }
+
+    .rjsf .form-group > .checkbox > label > span {
+        @apply mt-1;
+    }
+
+    .rjsf .form-group > .checkbox > label {
+        @apply flex items-center gap-x-2;
+    }
+
+    .rjsf .form-group > textarea {
+        @apply text-xs px-2 py-1 mt-1 text-gray-700 dark:text-gray-200 bg-gray-200 dark:bg-gray-700 border-gray-600 rounded-sm shadow-sm focus:outline-none focus:ring-primary focus:border-primary;
+    }
+
+    .form-group > fieldset {
+        @apply space-y-2;
+    }
+
+    .array-item-list .array-item {
+        @apply rounded p-2 relative;
+    }
+
+    .array-item-list {
+        @apply space-y-2;
+    }
+
+    #layers-view > div[data-radix-scroll-area-viewport] > div{
+        @apply h-full pt-2;
+    }
+
+}

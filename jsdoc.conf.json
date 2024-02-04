@@ -1,0 +1,22 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "source": {
+    "include": ["src/package"],
+    "includePattern": ".+\\.ts(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": ["plugins/markdown", "better-docs/component", "node_modules/better-docs/typescript"],
+  "templates": {
+    "better-docs": {
+      "name": "Chai Builder"
+    }
+  },
+  "opts": {
+    "destination": "docs",
+    "recurse": true,
+    "readme": "README.md"
+  }
+}
