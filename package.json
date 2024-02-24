@@ -13,6 +13,11 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
+    },
+    "./controls": {
+      "import": "./dist/controls.js",
+      "require": "./dist/controls.cjs",
+      "types": "./dist/controls.d.ts"
     }
   },
   "scripts": {

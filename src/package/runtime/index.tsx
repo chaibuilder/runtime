@@ -22,5 +22,3 @@ export {
   getBlockPropsDataType,
   getBlockPropsBinding,
 };
-
-export * from "../controls";

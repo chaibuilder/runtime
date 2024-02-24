@@ -1,4 +1,5 @@
-import { registerChaiBlock, SelectOption, Styles, useChaiBlocks } from "./package/runtime";
+import { registerChaiBlock, useChaiBlocks } from "./package/runtime";
+import {SelectOption, Styles} from "./package/controls";
 
 const BoxBlock = () => {
   return <div>Hello</div>;

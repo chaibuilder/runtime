@@ -9,9 +9,11 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     lib: {
-      entry: resolve(__dirname, "src/package/runtime/index.tsx"),
+      entry: {
+        index: resolve(__dirname, "src/package/runtime/index.tsx"),
+        controls: resolve(__dirname, "src/package/controls/index.ts"),
+      },
       formats: ["es", "cjs"],
-      fileName: "index",
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
