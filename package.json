@@ -3,9 +3,16 @@
   "private": false,
   "version": "0.1.0",
   "type": "module",
+  "author": "Suraj Air",
+  "license": "BSD-3-Clause",
+  "homepage": "https://chaibuilder.com",
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chaibuilder/runtime.git"
+  },
   "main": "dist/index.js",
   "sideEffects": false,
   "exports": {
