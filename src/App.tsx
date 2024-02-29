@@ -17,6 +17,7 @@ registerChaiBlock(BoxBlock, {
 });
 function App() {
   console.log(useChaiBlocks());
+
   return <div className="bg-background text-foreground"></div>;
 }
 

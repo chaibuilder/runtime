@@ -1,3 +1,4 @@
+import "../default-blocks";
 import {
   getBlockComponent,
   getBlockPropsBinding,
