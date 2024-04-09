@@ -1,9 +1,9 @@
 import * as React from "react";
 import { RadiobuttonIcon } from "@radix-ui/react-icons";
-import { Checkbox, SingleLineText, Styles } from "../controls";
-import { registerChaiBlock } from "../runtime/builder-blocks";
-import { generateUUID } from "../helper/lib.ts";
-import { ChaiBlock } from "../helper/types/ChaiBlock.ts";
+import { Checkbox, SingleLineText, Styles } from "../../controls";
+import { registerChaiBlock } from "../../runtime";
+import { generateUUID } from "../../helper/lib.ts";
+import { ChaiBlock } from "../../helper/types/ChaiBlock.ts";
 
 const RadioBlock = (
   block: ChaiBlock & {
@@ -44,6 +44,7 @@ registerChaiBlock(RadioBlock as React.FC<any>, {
   category: "core",
   icon: RadiobuttonIcon,
   group: "form",
+    hidden: true,
   props: {
     styles: Styles({ default: "flex items-center w-max gap-x-2" }),
     fieldName: SingleLineText({ title: "Field Name", default: "radio" }),

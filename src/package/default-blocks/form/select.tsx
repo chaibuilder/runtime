@@ -1,10 +1,10 @@
 import * as React from "react";
 import { DropdownMenuIcon } from "@radix-ui/react-icons";
 import { get, map } from "lodash";
-import { Checkbox, List, SingleLineText, Styles } from "../controls";
-import { registerChaiBlock } from "../runtime/builder-blocks";
-import { ChaiBlock } from "../helper/types/ChaiBlock.ts";
-import { generateUUID } from "../helper/lib.ts";
+import { Checkbox, List, SingleLineText, Styles } from "../../controls";
+import { registerChaiBlock } from "../../runtime";
+import { ChaiBlock } from "../../helper/types/ChaiBlock.ts";
+import { generateUUID } from "../../helper/lib.ts";
 
 const SelectBlock = (
   block: ChaiBlock & {
@@ -85,6 +85,7 @@ registerChaiBlock(SelectBlock as React.FC<any>, {
   category: "core",
   icon: DropdownMenuIcon,
   group: "form",
+  hidden: true,
   props: {
     styles: Styles({ default: "" }),
     fieldName: SingleLineText({ title: "Field Name", default: "select" }),

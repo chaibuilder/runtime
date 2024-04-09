@@ -1,10 +1,10 @@
 import * as React from "react";
 import { InputIcon } from "@radix-ui/react-icons";
 import { map } from "lodash";
-import { Checkbox, SelectOption, SingleLineText, Styles } from "../controls";
-import { registerChaiBlock } from "../runtime/builder-blocks";
-import { ChaiBlock } from "../helper/types/ChaiBlock.ts";
-import { generateUUID } from "../helper/lib.ts";
+import { Checkbox, SelectOption, SingleLineText, Styles } from "../../controls";
+import { registerChaiBlock } from "../../runtime";
+import { ChaiBlock } from "../../helper/types/ChaiBlock.ts";
+import { generateUUID } from "../../helper/lib.ts";
 
 const InputBlock = (
   block: ChaiBlock & {
@@ -70,6 +70,7 @@ registerChaiBlock(InputBlock as React.FC<any>, {
   category: "core",
   icon: InputIcon,
   group: "form",
+  hidden: true,
   props: {
     styles: Styles({ default: "" }),
     fieldName: SingleLineText({ title: "Field Name", default: "input" }),

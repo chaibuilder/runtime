@@ -1,10 +1,10 @@
 import * as React from "react";
 import { isEmpty } from "lodash";
 import { GroupIcon, LetterCaseToggleIcon } from "@radix-ui/react-icons";
-import { RichText, SingleLineText, Styles } from "../controls";
-import { registerChaiBlock } from "../runtime/builder-blocks";
-import EmptySlot from "./empty-slot";
-import { ChaiBlock } from "../helper/types/ChaiBlock.ts";
+import { RichText, SingleLineText, Styles } from "../../controls";
+import { registerChaiBlock } from "../../runtime";
+import EmptySlot from "../empty-slot.tsx";
+import { ChaiBlock } from "../../helper/types/ChaiBlock.ts";
 
 const FormBlock = (
   props: ChaiBlock & {
@@ -53,6 +53,7 @@ registerChaiBlock(FormBlock, {
   category: "core",
   icon: GroupIcon,
   group: "form",
+  hidden: true,
   props: {
     styles: Styles({ default: "" }),
     action: SingleLineText({
@@ -94,6 +95,7 @@ registerChaiBlock(LabelBlock, {
   category: "core",
   icon: LetterCaseToggleIcon,
   group: "form",
+  hidden: true,
   props: {
     styles: Styles({ default: "" }),
     content: SingleLineText({ title: "Content", default: "Label" }),

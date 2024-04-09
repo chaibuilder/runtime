@@ -95,6 +95,7 @@ registerChaiBlock(TableBlock, {
   label: "Table",
   category: "core",
   group: "table",
+  hidden: true,
   icon: TableIcon,
   props: {
     styles: Styles({ default: "" }),
@@ -122,6 +123,7 @@ registerChaiBlock(TableHeadBlock, {
   label: "Table Head",
   category: "core",
   group: "table",
+  hidden: true,
   icon: BorderTopIcon,
   props: {
     styles: Styles({ default: "" }),
@@ -149,6 +151,7 @@ registerChaiBlock(TableBodyBlock, {
   label: "Table Body",
   category: "core",
   group: "table",
+  hidden: true,
   icon: BorderAllIcon,
   props: {
     styles: Styles({ default: "" }),
@@ -177,6 +180,7 @@ registerChaiBlock(TableRowBlock, {
   label: "Table Row",
   category: "core",
   group: "table",
+  hidden: true,
   icon: ViewHorizontalIcon,
   props: {
     styles: Styles({ default: "w-full" }),
@@ -213,6 +217,7 @@ registerChaiBlock(TableCellBlock, {
   label: "Table Cell",
   category: "core",
   group: "table",
+  hidden: true,
   icon: DragHandleHorizontalIcon,
   props: {
     styles: Styles({ default: "" }),

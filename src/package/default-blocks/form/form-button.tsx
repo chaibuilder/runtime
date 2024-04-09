@@ -1,9 +1,9 @@
 import * as React from "react";
 import { ButtonIcon } from "@radix-ui/react-icons";
-import { Icon, SelectOption, SingleLineText, Styles } from "../controls";
-import { registerChaiBlock } from "../runtime/builder-blocks";
-import { ChaiBlock } from "../helper/types/ChaiBlock.ts";
-import { generateUUID } from "../helper/lib.ts";
+import { Icon, SelectOption, SingleLineText, Styles } from "../../controls";
+import { registerChaiBlock } from "../../runtime";
+import { ChaiBlock } from "../../helper/types/ChaiBlock.ts";
+import { generateUUID } from "../../helper/lib.ts";
 const FormButtonBlock = (
   block: ChaiBlock & {
     blockProps: Record<string, string>;
@@ -40,6 +40,7 @@ registerChaiBlock(FormButtonBlock as React.FC<any>, {
   category: "core",
   icon: ButtonIcon,
   group: "form",
+  hidden: true,
   props: {
     label: SingleLineText({ title: "Label", default: "Submit" }),
     styles: Styles({
