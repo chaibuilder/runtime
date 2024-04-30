@@ -1,6 +1,6 @@
 import * as React from "react";
 import { HeadingIcon } from "@radix-ui/react-icons";
-import { RichText, SelectOption, Styles } from "../controls";
+import { MultilineText, SelectOption, Styles } from "../controls";
 import { registerChaiBlock } from "../runtime/builder-blocks";
 import { ChaiBlock } from "../helper/types/ChaiBlock.ts";
 
@@ -48,7 +48,7 @@ registerChaiBlock(HeadingBlock as React.FC<any>, {
       ],
     }),
     styles: Styles({ default: "text-3xl" }),
-    content: RichText({ title: "Content", default: "Heading goes here" }),
+    content: MultilineText({ title: "Content", default: "Heading goes here" }),
   },
 });
 

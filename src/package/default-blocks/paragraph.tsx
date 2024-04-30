@@ -1,7 +1,8 @@
 import * as React from "react";
 import { TextIcon } from "@radix-ui/react-icons";
-import { RichText, Styles } from "../controls";
+import { MultilineText, Styles } from "../controls";
 import { registerChaiBlock } from "../runtime/builder-blocks";
+
 import { isNull } from "lodash";
 
 /**
@@ -36,7 +37,7 @@ registerChaiBlock(ParagraphBlock as React.FC<any>, {
   group: "basic",
   props: {
     styles: Styles({ default: "" }),
-    content: RichText({
+    content: MultilineText({
       title: "Content",
       default:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.",

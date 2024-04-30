@@ -2,7 +2,7 @@ import * as React from "react";
 import { ColumnsIcon, RowsIcon } from "@radix-ui/react-icons";
 import { get, isEmpty } from "lodash";
 import { cn } from "../helper/lib.ts";
-import { RichText, SelectOption, Styles } from "../controls";
+import { MultilineText, SelectOption, Styles } from "../controls";
 import { registerChaiBlock } from "../runtime/builder-blocks";
 import EmptySlot from "./empty-slot";
 import { ChaiBlock } from "../helper/types/ChaiBlock.ts";
@@ -97,7 +97,7 @@ registerChaiBlock(ListItemBlock, {
   group: "basic",
   props: {
     styles: Styles({ default: "" }),
-    content: RichText({ title: "Content", default: "List item" }),
+    content: MultilineText({ title: "Content", default: "List item" }),
   },
 });
 
