@@ -11,9 +11,13 @@ const RawTextBlock = (
   },
 ) => {
   if (props.inBuilder) {
-    return <span {...props.blockProps}>&nbsp;{props.content}&nbsp;</span>;
+    return (
+      <span className={"inline-block"} {...props.blockProps}>
+        {props.content}
+      </span>
+    );
   }
-  return ` ${props.content} `;
+  return `${props.content}`;
 };
 
 registerChaiBlock(RawTextBlock, {
