@@ -43,21 +43,22 @@ const getEmbedURL = (url: string): string | null => {
 
 const VideoBlock = (
   block: ChaiBlock & {
-    _controls: Record<string, any>;
+    controls: Record<string, any>;
     blockProps: Record<string, string>;
     styles: Record<string, string>;
+    inBuilder: boolean;
   },
 ) => {
-  const { blockProps, styles, _url, _controls } = block;
+  const { blockProps, inBuilder, styles, url, controls } = block;
 
-  const autoplay = _controls.autoPlay;
-  const controls = _controls.controls;
-  const muted = autoplay || _controls.muted;
-  const loop = _controls.loop;
+  const autoplay = controls.autoPlay;
+  const _controls = controls.controls;
+  const muted = autoplay || controls.muted;
+  const loop = controls.loop;
 
-  if (isEmpty(_url)) return <EmptySlot blockProps={blockProps} text="VIDEO URL" className="h-36" />;
+  if (isEmpty(url)) return <EmptySlot blockProps={blockProps} text="VIDEO URL" className="h-36" />;
 
-  let embedURL = getEmbedURL(_url);
+  let embedURL = getEmbedURL(url);
   let videoElement = null;
   if (embedURL) {
     if (!isEmpty(embedURL)) {
@@ -72,7 +73,7 @@ const VideoBlock = (
       ...blockProps,
       ...styles,
       src: embedURL,
-      allow: "autoplay *; fullscreen *",
+      allow: inBuilder ? "" : "autoplay *; fullscreen *",
       allowFullScreen: true,
       frameBorder: 0,
     });
@@ -80,17 +81,17 @@ const VideoBlock = (
     videoElement = React.createElement("video", {
       ...blockProps,
       ...styles,
-      src: _url,
-      controls,
+      src: url,
+      controls: _controls,
       muted,
-      autoPlay: autoplay,
+      autoPlay: inBuilder ? false : autoplay,
       loop,
     });
   }
 
   return (
     <div className="relative overflow-hidden" style={{ paddingBottom: "56.25%" }}>
-      <div className="absolute h-full w-full" />
+      {inBuilder ? <div {...blockProps} {...styles} className="absolute h-full w-full z-20" /> : null}
       {videoElement}
     </div>
   );
@@ -104,11 +105,11 @@ registerChaiBlock(VideoBlock as React.FC<any>, {
   group: "basic",
   props: {
     styles: Styles({ default: "absolute top-0 left-0 w-full h-full" }),
-    _url: SingleLineText({
+    url: SingleLineText({
       title: "Video URL",
       default: "https://www.youtube.com/watch?v=9xwazD5SyVg&ab_channel=MaximilianMustermann",
     }),
-    _controls: Model({
+    controls: Model({
       title: "Controls",
       properties: {
         autoPlay: Checkbox({ title: "Autoplay", default: true }),
