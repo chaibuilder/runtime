@@ -28,7 +28,7 @@ registerChaiBlock(SpanBlock, {
   group: "basic",
   props: {
     styles: Styles({ default: "" }),
-    content: MultilineText({ title: "Content", default: "" }),
+    content: MultilineText({ title: "Content", default: "Enter your content" }),
   },
 });
 
