@@ -11,21 +11,17 @@ const ButtonBlock = (
   },
 ) => {
   const { blockProps, iconSize, icon, content, iconPos, styles, children } = block;
-  let _icon = icon;
-  // add width height attr to icon
-  if (icon) {
-    const iconElement = document.createElement("div");
-    iconElement.innerHTML = icon;
-    const svg = iconElement.querySelector("svg");
-    if (svg) {
-      svg.setAttribute("width", iconSize + "px");
-    }
-    _icon = svg.outerHTML;
-  }
+  const _icon = icon;
   const child = children || (
     <>
       {content}
-      {_icon && <span className={iconPos + " mx-2 h-full w-full" || ""} dangerouslySetInnerHTML={{ __html: _icon }} />}
+      {_icon && (
+        <div
+          style={{ width: iconSize + "px" }}
+          className={iconPos + (iconPos === "order-first" ? " mr-2" : "ml-2") || ""}
+          dangerouslySetInnerHTML={{ __html: _icon }}
+        />
+      )}
     </>
   );
   return React.createElement("button", { ...blockProps, ...styles, type: "button" }, child);
