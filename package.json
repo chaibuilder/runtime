@@ -1,14 +1,12 @@
 {
   "name": "@chaibuilder/runtime",
   "private": false,
-  "version": "0.1.8",
+  "version": "0.1.9",
   "type": "module",
   "author": "Suraj Air",
   "license": "BSD-3-Clause",
   "homepage": "https://chaibuilder.com",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "https://github.com/chaibuilder/runtime.git"
