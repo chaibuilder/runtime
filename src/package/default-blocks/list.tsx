@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ColumnsIcon, RowsIcon } from "@radix-ui/react-icons";
-import { get, isEmpty } from "lodash";
+import { get, isEmpty } from "lodash-es";
 import { cn } from "../helper/lib.ts";
 import { MultilineText, SelectOption, Styles } from "../controls";
 import { registerChaiBlock } from "../runtime/builder-blocks";

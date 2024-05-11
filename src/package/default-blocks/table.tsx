@@ -8,7 +8,7 @@ import {
   TableIcon,
   ViewHorizontalIcon,
 } from "@radix-ui/react-icons";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 import EmptySlot from "./empty-slot";
 import { generateUUID } from "../helper/lib.ts";
 import { ChaiBlock } from "../helper/types/ChaiBlock.ts";

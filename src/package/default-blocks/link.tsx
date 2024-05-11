@@ -1,5 +1,5 @@
 import * as React from "react";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 import { Link1Icon } from "@radix-ui/react-icons";
 import { Link, SingleLineText, Styles } from "../controls";
 import { registerChaiBlock } from "../runtime/builder-blocks";

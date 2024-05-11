@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Image, SelectOption, Styles } from "../controls";
 import { registerChaiBlock } from "../runtime/builder-blocks";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 import EmptySlot from "./empty-slot";
 
 const BoxBlock = (

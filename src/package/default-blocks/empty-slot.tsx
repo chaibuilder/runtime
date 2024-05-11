@@ -1,4 +1,4 @@
-import { omit } from "lodash";
+import { omit } from "lodash-es";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { cn } from "../helper/lib";
 

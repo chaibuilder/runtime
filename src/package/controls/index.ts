@@ -1,4 +1,4 @@
-import { get, omit } from "lodash";
+import { get, omit } from "lodash-es";
 import { STYLES_KEY } from "../runtime/CONTROLS.ts";
 
 export interface ControlDefinition {

@@ -1,4 +1,4 @@
-import { endsWith, get, keys, mapValues, pick, pickBy, set } from "lodash";
+import { endsWith, get, keys, mapValues, pick, pickBy, set } from "lodash-es";
 import React, { LazyExoticComponent } from "react";
 import { ChaiBuilderBlock } from "../controls/types.ts";
 

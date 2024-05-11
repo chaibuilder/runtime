@@ -2,7 +2,7 @@ import * as React from "react";
 import { SketchLogoIcon } from "@radix-ui/react-icons";
 import { Icon, Styles } from "../controls";
 import { registerChaiBlock } from "../runtime/builder-blocks";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 import EmptySlot from "./empty-slot";
 import { ChaiBlock } from "../helper/types/ChaiBlock.ts";
 import { cn } from "../helper/lib";

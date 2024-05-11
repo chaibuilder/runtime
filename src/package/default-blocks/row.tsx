@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ColumnsIcon, RowsIcon } from "@radix-ui/react-icons";
-import { get } from "lodash";
+import { get } from "lodash-es";
 import { Numeric, Styles } from "../controls";
 import { registerChaiBlock } from "../runtime/builder-blocks";
 import { ChaiBlock } from "../helper/types/ChaiBlock.ts";

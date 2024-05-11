@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DropdownMenuIcon } from "@radix-ui/react-icons";
-import { get, map } from "lodash";
+import { get, map } from "lodash-es";
 import { Checkbox, List, SingleLineText, Styles } from "../../controls";
 import { registerChaiBlock } from "../../runtime";
 import { ChaiBlock } from "../../helper/types/ChaiBlock.ts";

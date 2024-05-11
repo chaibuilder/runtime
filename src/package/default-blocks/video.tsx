@@ -1,6 +1,6 @@
 import * as React from "react";
 import { VideoIcon } from "@radix-ui/react-icons";
-import { isEmpty } from "lodash";
+import { isEmpty } from "lodash-es";
 import { Checkbox, Model, SingleLineText, Styles } from "../controls";
 import { registerChaiBlock } from "../runtime/builder-blocks";
 import EmptySlot from "./empty-slot";

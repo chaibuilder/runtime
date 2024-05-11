@@ -1,4 +1,4 @@
-import { get, values } from "lodash";
+import { get, values } from "lodash-es";
 
 type ChaiDataProvider = {
   name: string;

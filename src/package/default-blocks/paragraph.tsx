@@ -3,7 +3,7 @@ import { TextIcon } from "@radix-ui/react-icons";
 import { MultilineText, Styles } from "../controls";
 import { registerChaiBlock } from "../runtime/builder-blocks";
 
-import { isNull } from "lodash";
+import { isNull } from "lodash-es";
 
 /**
  * Heading component
