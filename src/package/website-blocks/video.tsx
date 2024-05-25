@@ -41,63 +41,65 @@ const getEmbedURL = (url: string): string | null => {
   return null;
 };
 
-const VideoBlock = (
-  block: ChaiBlock & {
-    controls: Record<string, any>;
-    blockProps: Record<string, string>;
-    styles: Record<string, string>;
-    inBuilder: boolean;
-  },
-) => {
-  const { blockProps, inBuilder, styles, url, controls } = block;
+const VideoBlock = React.memo(
+  (
+    block: ChaiBlock & {
+      controls: Record<string, any>;
+      blockProps: Record<string, string>;
+      styles: Record<string, string>;
+      inBuilder: boolean;
+    },
+  ) => {
+    const { blockProps, inBuilder, styles, url, controls } = block;
 
-  const autoplay = controls.autoPlay;
-  const _controls = controls.controls;
-  const muted = autoplay || controls.muted;
-  const loop = controls.loop;
+    const autoplay = controls.autoPlay;
+    const _controls = controls.controls;
+    const muted = autoplay || controls.muted;
+    const loop = controls.loop;
 
-  if (isEmpty(url)) return <EmptySlot blockProps={blockProps} text="VIDEO URL" className="h-36" />;
+    if (isEmpty(url)) return <EmptySlot blockProps={blockProps} text="VIDEO URL" className="h-36" />;
 
-  let embedURL = getEmbedURL(url);
-  let videoElement = null;
-  if (embedURL) {
-    if (!isEmpty(embedURL)) {
-      const iframeControls = [];
-      iframeControls.push(`autoplay=${autoplay ? 1 : 0}`);
-      iframeControls.push(`controls=${controls ? 1 : 0}`);
-      iframeControls.push(`mute=${muted ? 1 : 0}&muted=${muted ? 1 : 0}`);
-      iframeControls.push(`loop=${loop ? 1 : 0}`);
-      embedURL = `${embedURL}?${iframeControls.join("&")}`;
+    let embedURL = getEmbedURL(url);
+    let videoElement = null;
+    if (embedURL) {
+      if (!isEmpty(embedURL)) {
+        const iframeControls = [];
+        iframeControls.push(`autoplay=${autoplay ? 1 : 0}`);
+        iframeControls.push(`controls=${controls ? 1 : 0}`);
+        iframeControls.push(`mute=${muted ? 1 : 0}&muted=${muted ? 1 : 0}`);
+        iframeControls.push(`loop=${loop ? 1 : 0}`);
+        embedURL = `${embedURL}?${iframeControls.join("&")}`;
+      }
+      videoElement = React.createElement("iframe", {
+        ...blockProps,
+        ...styles,
+        src: embedURL,
+        allow: inBuilder ? "" : "autoplay *; fullscreen *",
+        allowFullScreen: true,
+        frameBorder: 0,
+      });
+    } else {
+      videoElement = React.createElement("video", {
+        ...blockProps,
+        ...styles,
+        src: url,
+        controls: _controls,
+        muted,
+        autoPlay: inBuilder ? false : autoplay,
+        loop,
+      });
     }
-    videoElement = React.createElement("iframe", {
-      ...blockProps,
-      ...styles,
-      src: embedURL,
-      allow: inBuilder ? "" : "autoplay *; fullscreen *",
-      allowFullScreen: true,
-      frameBorder: 0,
-    });
-  } else {
-    videoElement = React.createElement("video", {
-      ...blockProps,
-      ...styles,
-      src: url,
-      controls: _controls,
-      muted,
-      autoPlay: inBuilder ? false : autoplay,
-      loop,
-    });
-  }
 
-  return (
-    <div className="relative overflow-hidden" style={{ paddingBottom: "56.25%" }}>
-      {inBuilder ? <div {...blockProps} {...styles} className="absolute h-full w-full z-20" /> : null}
-      {videoElement}
-    </div>
-  );
-};
+    return (
+      <div className="relative overflow-hidden" style={{ paddingBottom: "56.25%" }}>
+        {inBuilder ? <div {...blockProps} {...styles} className="absolute h-full w-full z-20" /> : null}
+        {videoElement}
+      </div>
+    );
+  },
+);
 
-registerChaiBlock(VideoBlock as React.FC<any>, {
+registerChaiBlock(VideoBlock, {
   type: "Video",
   label: "Video",
   category: "core",

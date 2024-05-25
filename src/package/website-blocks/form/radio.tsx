@@ -1,4 +1,3 @@
-import * as React from "react";
 import { RadiobuttonIcon } from "@radix-ui/react-icons";
 import { Checkbox, SingleLineText, Styles } from "../../controls";
 import { registerChaiBlock } from "../../runtime";
@@ -38,13 +37,13 @@ const RadioBlock = (
   );
 };
 
-registerChaiBlock(RadioBlock as React.FC<any>, {
+registerChaiBlock(RadioBlock, {
   type: "Radio",
   label: "Radio",
   category: "core",
   icon: RadiobuttonIcon,
   group: "form",
-    hidden: true,
+  hidden: true,
   props: {
     styles: Styles({ default: "flex items-center w-max gap-x-2" }),
     fieldName: SingleLineText({ title: "Field Name", default: "radio" }),

@@ -21,12 +21,17 @@ type BuilderBlock = {
   label?: string;
   props?: any;
   type: string;
+  canHaveChildBlock?: Function;
 };
 
 const BUILDER_BLOCKS: Record<string, BuilderBlock> = {};
 
 export const useChaiBlocks = () => {
   return BUILDER_BLOCKS;
+};
+
+export const useChaiBlock = (type: string) => {
+  return get(BUILDER_BLOCKS, type, null);
 };
 
 export const getBlockComponent = (type: string): BuilderBlock | null => {
@@ -59,10 +64,7 @@ export const syncBlocksWithDefaults = (blocks: ChaiBlock[]): ChaiBlock[] => {
   });
 };
 
-const registerInternalBlock = (
-  component: React.FC<ChaiBlock & any> | Promise<React.FC<ChaiBlock & any>>,
-  options: ChaiBuilderBlock,
-) => {
+const registerInternalBlock = (component: React.ComponentType<ChaiBlock & any>, options: ChaiBuilderBlock) => {
   set(BUILDER_BLOCKS, options.type, { component: component, ...options });
 };
 /**
@@ -70,9 +72,6 @@ const registerInternalBlock = (
  * @param component
  * @param options
  */
-export const registerChaiBlock = (
-  component: React.FC<ChaiBlock & any> | Promise<React.FC<ChaiBlock & any>>,
-  options: ChaiBuilderBlock,
-) => {
+export const registerChaiBlock = (component: React.ComponentType<ChaiBlock & any>, options: ChaiBuilderBlock) => {
   registerInternalBlock(component, { ...options, ...{ category: options.category || "custom" } });
 };

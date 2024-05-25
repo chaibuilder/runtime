@@ -27,7 +27,7 @@ const ButtonBlock = (
   return React.createElement("button", { ...blockProps, ...styles, type: "button" }, child);
 };
 
-registerChaiBlock(ButtonBlock as React.FC<any>, {
+registerChaiBlock(ButtonBlock, {
   type: "Button",
   label: "Button",
   category: "core",

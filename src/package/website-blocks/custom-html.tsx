@@ -4,19 +4,21 @@ import { MultilineText, Styles } from "../controls";
 import { registerChaiBlock } from "../runtime/builder-blocks";
 import { ChaiBlock } from "../helper/types/ChaiBlock.ts";
 
-const CustomHTMLBlock = (
-  props: ChaiBlock & {
-    blockProps: Record<string, string>;
-    styles: Record<string, string>;
+const CustomHTMLBlock = React.memo(
+  (
+    props: ChaiBlock & {
+      blockProps: Record<string, string>;
+      styles: Record<string, string>;
+    },
+  ) => {
+    const { blockProps, styles, content } = props;
+    return React.createElement("div", {
+      ...styles,
+      ...blockProps,
+      dangerouslySetInnerHTML: { __html: content },
+    });
   },
-) => {
-  const { blockProps, styles, content } = props;
-  return React.createElement("div", {
-    ...styles,
-    ...blockProps,
-    dangerouslySetInnerHTML: { __html: content },
-  });
-};
+);
 
 registerChaiBlock(CustomHTMLBlock as React.FC<any>, {
   type: "CustomHTML",

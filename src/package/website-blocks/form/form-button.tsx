@@ -1,4 +1,3 @@
-import * as React from "react";
 import { ButtonIcon } from "@radix-ui/react-icons";
 import { Icon, SelectOption, SingleLineText, Styles } from "../../controls";
 import { registerChaiBlock } from "../../runtime";
@@ -34,7 +33,7 @@ const FormButtonBlock = (
   );
 };
 
-registerChaiBlock(FormButtonBlock as React.FC<any>, {
+registerChaiBlock(FormButtonBlock, {
   type: "FormButton",
   label: "Submit Button",
   category: "core",

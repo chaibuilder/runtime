@@ -1,4 +1,3 @@
-import * as React from "react";
 import { DropdownMenuIcon } from "@radix-ui/react-icons";
 import { get, map } from "lodash-es";
 import { Checkbox, List, SingleLineText, Styles } from "../../controls";
@@ -79,7 +78,7 @@ const SelectBlock = (
   );
 };
 
-registerChaiBlock(SelectBlock as React.FC<any>, {
+registerChaiBlock(SelectBlock, {
   type: "Select",
   label: "Select",
   category: "core",

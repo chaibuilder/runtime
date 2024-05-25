@@ -30,7 +30,7 @@ const IconBlock = (
   });
 };
 
-registerChaiBlock(IconBlock as React.FC<any>, {
+registerChaiBlock(IconBlock, {
   type: "Icon",
   label: "Icon",
   category: "core",

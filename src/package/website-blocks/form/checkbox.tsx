@@ -1,9 +1,8 @@
-import * as React from "react";
 import { CheckboxIcon } from "@radix-ui/react-icons";
 import { Checkbox, SingleLineText, Styles } from "../../controls";
 import { ChaiBlock } from "../../helper/types/ChaiBlock.ts";
 import { generateUUID } from "../../helper/lib.ts";
-import {registerChaiBlock} from "../../runtime";
+import { registerChaiBlock } from "../../runtime";
 
 const CheckboxBlock = (
   block: ChaiBlock & {
@@ -45,13 +44,13 @@ const CheckboxBlock = (
   );
 };
 
-registerChaiBlock(CheckboxBlock as React.FC<any>, {
+registerChaiBlock(CheckboxBlock, {
   type: "Checkbox",
   label: "Checkbox",
   category: "core",
   icon: CheckboxIcon,
   group: "form",
-    hidden: true,
+  hidden: true,
   props: {
     fieldName: SingleLineText({ title: "Field Name", default: "checkbox" }),
     styles: Styles({ default: "flex items-center gap-x-2" }),

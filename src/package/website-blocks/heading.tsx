@@ -27,7 +27,7 @@ const HeadingBlock = (
   });
 };
 
-registerChaiBlock(HeadingBlock as React.FC<any>, {
+registerChaiBlock(HeadingBlock, {
   type: "Heading",
   label: "Heading",
   category: "core",

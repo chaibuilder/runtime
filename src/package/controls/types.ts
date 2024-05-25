@@ -1,5 +1,5 @@
-import React, {LazyExoticComponent} from "react";
-import {ChaiBlock} from "../ChaiBlock.ts";
+import React, { LazyExoticComponent } from "react";
+import { ChaiBlock } from "../ChaiBlock.ts";
 import {
   ControlDefinition,
   ListControlDefinition,
@@ -26,4 +26,5 @@ export interface ChaiBuilderBlock {
   };
   type: string;
   builderComponent?: React.FC<any> | LazyExoticComponent<any>;
+  canHaveChildBlocks?: Function;
 }

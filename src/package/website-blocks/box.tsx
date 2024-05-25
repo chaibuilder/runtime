@@ -4,27 +4,29 @@ import { registerChaiBlock } from "../runtime/builder-blocks";
 import { isEmpty } from "lodash-es";
 import EmptySlot from "./empty-slot";
 
-const BoxBlock = (
-  props: any & {
-    children: React.ReactNode;
-    styles: any;
-    tag: string;
-    backgroundImage: string;
-    blockProps: Record<string, string>;
+const BoxBlock = React.memo(
+  (
+    props: any & {
+      children: React.ReactNode;
+      styles: any;
+      tag: string;
+      backgroundImage: string;
+      blockProps: Record<string, string>;
+    },
+  ) => {
+    const { blockProps, backgroundImage, children, tag = "div", styles } = props;
+
+    if (!children && isEmpty(styles?.className)) {
+      return <EmptySlot blockProps={blockProps} styles={styles} />;
+    }
+    let cssStyles = {};
+    if (backgroundImage) {
+      cssStyles = { backgroundImage: `url(${backgroundImage})` };
+    }
+
+    return React.createElement(tag, { ...blockProps, ...styles, style: cssStyles }, children);
   },
-) => {
-  const { blockProps, backgroundImage, children, tag = "div", styles } = props;
-
-  if (!children && isEmpty(styles?.className)) {
-    return <EmptySlot blockProps={blockProps} styles={styles} />;
-  }
-  let cssStyles = {};
-  if (backgroundImage) {
-    cssStyles = { backgroundImage: `url(${backgroundImage})` };
-  }
-
-  return React.createElement(tag, { ...blockProps, ...styles, style: cssStyles }, children);
-};
+);
 
 registerChaiBlock(BoxBlock, {
   type: "Box",

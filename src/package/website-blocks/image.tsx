@@ -29,7 +29,7 @@ const ImageBlock = (
   });
 };
 
-registerChaiBlock(ImageBlock as React.FC<any>, {
+registerChaiBlock(ImageBlock, {
   type: "Image",
   label: "Image",
   category: "core",

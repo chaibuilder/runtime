@@ -9,6 +9,7 @@ import "./icon";
 import "./image";
 import "./slot";
 import "./video";
+import "./iframe";
 import "./custom-html";
 import "./span";
 import "./divider";

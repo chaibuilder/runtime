@@ -19,7 +19,7 @@ const DividerBlock = (
   return React.createElement("hr", { ...styles, ...blockProps });
 };
 
-registerChaiBlock(DividerBlock as React.FC<any>, {
+registerChaiBlock(DividerBlock, {
   type: "Divider",
   label: "Divider",
   category: "core",

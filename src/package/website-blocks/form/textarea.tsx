@@ -1,4 +1,3 @@
-import * as React from "react";
 import { InputIcon } from "@radix-ui/react-icons";
 import { Checkbox, Numeric, SingleLineText, Styles } from "../../controls";
 import { registerChaiBlock } from "../../runtime";
@@ -40,13 +39,13 @@ const InputBlock = (
   );
 };
 
-registerChaiBlock(InputBlock as React.FC<any>, {
+registerChaiBlock(InputBlock, {
   type: "TextArea",
   label: "TextArea",
   category: "core",
   icon: InputIcon,
   group: "form",
-    hidden: true,
+  hidden: true,
   props: {
     fieldName: SingleLineText({ title: "Field Name", default: "textarea" }),
     showLabel: Checkbox({ title: "Show label", default: true }),

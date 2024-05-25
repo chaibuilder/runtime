@@ -1,4 +1,3 @@
-import "../default-blocks";
 import {
   getBlockComponent,
   getBlockPropsBinding,
@@ -6,12 +5,14 @@ import {
   getDefaultBlockProps,
   registerChaiBlock,
   syncBlocksWithDefaults,
+  useChaiBlock,
   useChaiBlocks,
 } from "./builder-blocks";
 
 import { getChaiDataProvider, getChaiDataProviders, registerChaiDataProvider } from "./builder-data.tsx";
 
 export {
+  useChaiBlock,
   getBlockComponent,
   registerChaiBlock,
   syncBlocksWithDefaults,
