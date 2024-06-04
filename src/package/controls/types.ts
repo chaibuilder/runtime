@@ -1,4 +1,4 @@
-import React, { LazyExoticComponent } from "react";
+import React from "react";
 import { ChaiBlock } from "../ChaiBlock.ts";
 import {
   ControlDefinition,
@@ -9,13 +9,17 @@ import {
 } from "./index.ts";
 
 export interface ChaiBuilderBlock {
+  // required
+  type: string;
+  label: string;
+  group: string;
+
+  // optional
   blocks?: ChaiBlock[];
   category?: string;
-  group: string;
   preview?: string;
   hidden?: boolean;
-  icon?: React.ReactNode | React.FC;
-  label: string;
+  icon?: React.ReactNode | React.ComponentType;
   props?: {
     [key: string]:
       | ControlDefinition
@@ -24,7 +28,9 @@ export interface ChaiBuilderBlock {
       | ListControlDefinition
       | SlotControlDefinition;
   };
-  type: string;
-  builderComponent?: React.FC<any> | LazyExoticComponent<any>;
-  canHaveChildBlocks?: Function;
+  builderComponent?: React.ComponentType<any>;
+  canAcceptBlock?: (type: string) => boolean;
+  canDelete?: () => boolean;
+  canMove?: () => boolean;
+  canDuplicate: () => boolean;
 }
