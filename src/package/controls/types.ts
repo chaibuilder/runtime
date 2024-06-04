@@ -32,5 +32,5 @@ export interface ChaiBuilderBlock {
   canAcceptBlock?: (type: string) => boolean;
   canDelete?: () => boolean;
   canMove?: () => boolean;
-  canDuplicate: () => boolean;
+  canDuplicate?: () => boolean;
 }
