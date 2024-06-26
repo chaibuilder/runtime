@@ -8,19 +8,28 @@ import {
   useChaiBlock,
   useChaiBlocks,
 } from "./builder-blocks";
-
+import { registerStylingPresets, useGlobalStylingPresets } from "./STYLING_PRESETS.ts";
 import { getChaiDataProvider, getChaiDataProviders, registerChaiDataProvider } from "./builder-data.tsx";
 
 export {
+  // hooks
   useChaiBlock,
-  getBlockComponent,
+  useChaiBlocks,
+  useGlobalStylingPresets,
+
+  // functions
   registerChaiBlock,
-  syncBlocksWithDefaults,
+  registerChaiDataProvider,
+  registerStylingPresets,
+
+  // getters
+  getBlockComponent,
   getChaiDataProviders,
   getDefaultBlockProps,
-  useChaiBlocks,
-  registerChaiDataProvider,
   getChaiDataProvider,
   getBlockPropsDataType,
   getBlockPropsBinding,
+
+  // helpers
+  syncBlocksWithDefaults,
 };

@@ -33,4 +33,5 @@ export interface ChaiBuilderBlock {
   canDelete?: () => boolean;
   canMove?: () => boolean;
   canDuplicate?: () => boolean;
+  canBeNested?: (type: string) => boolean;
 }

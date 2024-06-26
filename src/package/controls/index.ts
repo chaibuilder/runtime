@@ -1,5 +1,6 @@
 import { get, omit } from "lodash-es";
 import { STYLES_KEY } from "../runtime/CONTROLS.ts";
+import { StylingPresets } from "../runtime/STYLING_PRESETS.ts";
 
 export interface ControlDefinition {
   default?: any;
@@ -284,6 +285,7 @@ export const List = (props: ListProps) =>
 
 type StylesProps = {
   default?: string;
+  presets?: StylingPresets;
 };
 
 export const Styles = (props: StylesProps) =>
@@ -291,6 +293,7 @@ export const Styles = (props: StylesProps) =>
     type: "styles",
     binding: false,
     default: `${STYLES_KEY},${props.default || ""}`,
+    presets: props.presets || {},
   }) as StylesControlDefinition;
 
 export const Icon = (props: ControlProps) =>
