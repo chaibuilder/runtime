@@ -3,5 +3,5 @@ export type ChaiBlock = {
   _name?: string;
   _parent?: string | null | undefined;
   _bindings?: Record<string, string>;
-  readonly _type: string;
+  _type: string;
 } & Record<string, string>;
