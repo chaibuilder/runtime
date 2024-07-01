@@ -15,10 +15,11 @@ export interface ChaiBuilderBlock {
   group: string;
 
   // optional
-  blocks?: ChaiBlock[];
+  blocks?: ChaiBlock[] | (() => ChaiBlock[]);
   category?: string;
   preview?: string;
-  hidden?: boolean;
+  hidden?: boolean | ((parentType?: string) => boolean);
+  builderMode?: 'web' | 'email' | string;
   icon?: React.ReactNode | React.ComponentType;
   props?: {
     [key: string]:

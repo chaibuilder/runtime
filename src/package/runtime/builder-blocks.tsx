@@ -1,5 +1,5 @@
 import { endsWith, get, keys, mapValues, pick, pickBy, set } from "lodash-es";
-import React, { LazyExoticComponent } from "react";
+import React from "react";
 import { ChaiBuilderBlock } from "../controls/types.ts";
 
 type ChaiBlock = {
@@ -7,24 +7,11 @@ type ChaiBlock = {
   _name?: string;
   _parent?: string | null | undefined;
   _bindings?: Record<string, string>;
-  readonly _type: string;
+  _type: string;
 } & Record<string, string>;
 
-/**
- * This is global builder blocks
- */
 
-type BuilderBlock = {
-  component: React.FC<ChaiBlock & any> | LazyExoticComponent<any>;
-  group: string;
-  icon?: any;
-  label?: string;
-  props?: any;
-  type: string;
-  canHaveChildBlock?: Function;
-};
-
-const BUILDER_BLOCKS: Record<string, BuilderBlock> = {};
+const BUILDER_BLOCKS: Record<string, ChaiBuilderBlock> = {};
 
 export const useChaiBlocks = () => {
   return BUILDER_BLOCKS;
@@ -34,7 +21,7 @@ export const useChaiBlock = (type: string) => {
   return get(BUILDER_BLOCKS, type, null);
 };
 
-export const getBlockComponent = (type: string): BuilderBlock | null => {
+export const getBlockComponent = (type: string): ChaiBuilderBlock | null => {
   return get(BUILDER_BLOCKS, type, null);
 };
 
@@ -64,7 +51,7 @@ export const syncBlocksWithDefaults = (blocks: ChaiBlock[]): ChaiBlock[] => {
   });
 };
 
-const registerInternalBlock = (component: React.ComponentType<ChaiBlock & any>, options: ChaiBuilderBlock) => {
+const registerInternalBlock = (component: React.ComponentType<ChaiBlock>, options: ChaiBuilderBlock) => {
   set(BUILDER_BLOCKS, options.type, { component: component, ...options });
 };
 /**
