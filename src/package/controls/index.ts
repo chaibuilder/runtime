@@ -5,11 +5,11 @@ import { StylingPresets } from "../runtime/STYLING_PRESETS.ts";
 export interface ControlDefinition {
   default?: any;
   binding?: boolean;
-  i18n: boolean;
   itemProperties?: { [key: string]: ControlDefinition };
   properties?: { [key: string]: ControlDefinition };
   required?: boolean;
   schema: any;
+  ai?: Record<string, any>;
   type: "slots" | "singular" | "list" | "model" | "styles";
   uiSchema: any;
 }
@@ -52,10 +52,10 @@ type ControlProps = {
   default?: any;
   binding?: boolean;
   description?: string;
-  i18n?: boolean;
   required?: boolean;
   title: string;
   builderProp?: boolean;
+  ai?: Record<string, any>;
 };
 
 type InputProps = ControlProps & {
@@ -71,7 +71,6 @@ export const InfoField = (props: ControlProps) =>
   ({
     type: "singular",
     default: "",
-    i18n: props.i18n || false,
     uiSchema: {},
     binding: get(props, "binding", true),
     dataType: "string",
@@ -92,12 +91,12 @@ export const SingleLineText = (props: InputProps) =>
     type: "singular",
     default: props.default || "",
     binding: get(props, "binding", true),
-    i18n: props.i18n || false,
     dataType: "string",
     required: props.required || false,
+    ai: props.ai || undefined,
     schema: {
       type: "string",
-      ...omit(props, ["i18n", "required"]),
+      ...omit(props, ["ai", "required"]),
     },
     uiSchema: {
       "ui:placeholder": props.placeholder || "Enter here",
@@ -119,8 +118,8 @@ export const MultilineText = (props: TextAreaProps) =>
     default: props.default || "",
     binding: get(props, "binding", true),
     dataType: "string",
-    i18n: props.i18n || false,
     required: props.required || false,
+    ai: props.ai || undefined,
     schema: {
       type: "string",
       ...omit(props, ["i18n", "required", "rows"]),
@@ -148,6 +147,7 @@ export const Checkbox = (props: CheckboxProps) =>
     default: props.default || false,
     dataType: "boolean",
     binding: get(props, "binding", true),
+    ai: props.ai || undefined,
     schema: {
       type: "boolean",
       ...omit(props, ["i18n", "required"]),
@@ -171,8 +171,8 @@ export const Numeric = (props: NumberProps) =>
     default: props.default || "",
     binding: get(props, "binding", true),
     dataType: "number",
-    i18n: props.i18n || false,
     required: props.required || false,
+    ai: props.ai || undefined,
     schema: {
       type: "number",
       ...omit(props, ["i18n", "required"]),
@@ -189,9 +189,9 @@ export const SelectOption = (props: SelectProps) =>
     type: "singular",
     default: props.default || "",
     binding: get(props, "binding", true),
-    i18n: props.i18n || false,
     required: props.required || false,
     dataType: "string",
+    ai: props.ai || undefined,
     schema: {
       type: "string",
       ...omit(props, ["i18n", "required", "options", "binding"]),
@@ -209,6 +209,7 @@ export const Color = (props: ControlProps) =>
     default: props.default || "",
     binding: get(props, "binding", true),
     dataType: "string",
+    ai: props.ai || undefined,
     schema: {
       type: "string",
       ...omit(props, ["i18n", "required"]),
@@ -239,9 +240,9 @@ export const RichText = (props: ControlProps) =>
   ({
     type: "singular",
     default: props.default || "",
-    i18n: props.i18n || false,
     binding: get(props, "binding", true),
     dataType: "string",
+    ai: props.ai || undefined,
     schema: {
       type: "string",
       ...omit(props, ["i18n", "required"]),
@@ -278,6 +279,7 @@ export const List = (props: ListProps) =>
     itemProperties: props.itemProperties,
     binding: get(props, "binding", true),
     title: props.title,
+    ai: props.ai || undefined,
     dataType: "array",
     default: props.default || [],
     itemTitle: props.getItemLabel ? props.getItemLabel({}) : () => "",
@@ -301,8 +303,8 @@ export const Icon = (props: ControlProps) =>
     default: props.default || "",
     binding: get(props, "binding", true),
     type: "singular",
-    i18n: props.i18n || false,
     dataType: "string",
+    ai: props.ai || undefined,
     schema: {
       type: "string",
       title: "Icon",
@@ -327,7 +329,7 @@ export const Link = (props: LinkProps) =>
     type: "singular",
     binding: get(props, "binding", true),
     dataType: "object",
-    i18n: props.i18n || false,
+    ai: props.ai || undefined,
     schema: {
       type: "object",
       ...(props || {}),
@@ -348,7 +350,7 @@ export const Image = (props: ControlProps) =>
     default: props.default || "",
     binding: get(props, "binding", true),
     dataType: "string",
-    i18n: props.i18n || false,
+    ai: props.ai || undefined,
     schema: {
       type: "string",
       ...omit(props, ["i18n", "required"]),
