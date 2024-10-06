@@ -19,7 +19,6 @@ export interface ChaiBuilderBlock {
   category?: string;
   preview?: string;
   hidden?: boolean | ((parentType?: string) => boolean);
-  builderMode?: 'web' | 'email' | string;
   icon?: React.ReactNode | React.ComponentType;
   props?: {
     [key: string]:
@@ -29,6 +28,7 @@ export interface ChaiBuilderBlock {
       | ListControlDefinition
       | SlotControlDefinition;
   };
+  propsEditor?: React.ComponentType<any>;
   builderComponent?: React.ComponentType<any>;
   canAcceptBlock?: (type: string) => boolean;
   canDelete?: () => boolean;
