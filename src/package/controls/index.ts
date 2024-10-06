@@ -7,6 +7,7 @@ export { Code };
 
 export interface ControlDefinition {
   default?: any;
+  hidden?: boolean;
   binding?: boolean;
   itemProperties?: { [key: string]: ControlDefinition };
   properties?: { [key: string]: ControlDefinition };
@@ -52,12 +53,12 @@ export interface ListControlDefinition {
 
 export type ControlProps = {
   [key: string]: any;
+  hidden?: boolean;
   default?: any;
   binding?: boolean;
   description?: string;
   required?: boolean;
   title: string;
-  builderProp?: boolean;
   ai?: Record<string, any>;
 };
 
@@ -75,6 +76,7 @@ export const InfoField = (props: ControlProps) =>
     type: "singular",
     default: "",
     uiSchema: {},
+    hidden: get(props, "hidden", false),
     binding: get(props, "binding", true),
     dataType: "string",
     schema: {
@@ -93,6 +95,7 @@ export const SingleLineText = (props: InputProps) =>
   ({
     type: "singular",
     default: props.default || "",
+    hidden: get(props, "hidden", false),
     binding: get(props, "binding", true),
     dataType: "string",
     required: props.required || false,
@@ -119,6 +122,7 @@ export const MultilineText = (props: TextAreaProps) =>
   ({
     type: "singular",
     default: props.default || "",
+    hidden: get(props, "hidden", false),
     binding: get(props, "binding", true),
     dataType: "string",
     required: props.required || false,
@@ -149,6 +153,7 @@ export const Checkbox = (props: CheckboxProps) =>
     i18n: props.i18n || false,
     default: props.default || false,
     dataType: "boolean",
+    hidden: get(props, "hidden", false),
     binding: get(props, "binding", true),
     ai: props.ai || undefined,
     schema: {
@@ -172,6 +177,7 @@ export const Numeric = (props: NumberProps) =>
   ({
     type: "singular",
     default: props.default || "",
+    hidden: get(props, "hidden", false),
     binding: get(props, "binding", true),
     dataType: "number",
     required: props.required || false,
@@ -191,6 +197,7 @@ export const SelectOption = (props: SelectProps) =>
   ({
     type: "singular",
     default: props.default || "",
+    hidden: get(props, "hidden", false),
     binding: get(props, "binding", true),
     required: props.required || false,
     dataType: "string",
@@ -210,6 +217,7 @@ export const Color = (props: ControlProps) =>
     type: "singular",
     i18n: props.i18n || false,
     default: props.default || "",
+    hidden: get(props, "hidden", false),
     binding: get(props, "binding", true),
     dataType: "string",
     ai: props.ai || undefined,
@@ -351,6 +359,7 @@ export const Image = (props: ControlProps) =>
   ({
     type: "singular",
     default: props.default || "",
+    hidden: get(props, "hidden", false),
     binding: get(props, "binding", true),
     dataType: "string",
     ai: props.ai || undefined,
