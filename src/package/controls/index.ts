@@ -60,7 +60,7 @@ export type ControlProps = {
   description?: string;
   required?: boolean;
   title: string;
-  ai?: Record<string, any>;
+  ai?: boolean;
 };
 
 type InputProps = ControlProps & {
@@ -83,7 +83,7 @@ export const InfoField = (props: ControlProps) =>
     schema: {
       type: "null",
       default: "null",
-      ...omit(props, ["i18n", "required"]),
+      ...omit(props, ["i18n", "ai", "required"]),
     },
   }) as ControlDefinition;
 
@@ -132,7 +132,7 @@ export const MultilineText = (props: TextAreaProps) =>
     i18n: props.i18n || false,
     schema: {
       type: "string",
-      ...omit(props, ["i18n", "required", "rows"]),
+      ...omit(props, ["i18n", "ai", "required", "rows"]),
     },
     uiSchema: {
       "ui:widget": "textarea",
@@ -161,7 +161,7 @@ export const Checkbox = (props: CheckboxProps) =>
     ai: props.ai || false,
     schema: {
       type: "boolean",
-      ...omit(props, ["i18n", "required"]),
+      ...omit(props, ["i18n", "ai", "required"]),
     },
     uiSchema: {
       "ui:title": props.title || "Select Item",
@@ -188,7 +188,7 @@ export const Numeric = (props: NumberProps) =>
     i18n: props.i18n || false,
     schema: {
       type: "number",
-      ...omit(props, ["i18n", "required"]),
+      ...omit(props, ["i18n", "ai", "required"]),
     },
     uiSchema: {},
   }) as ControlDefinition;
@@ -209,7 +209,7 @@ export const SelectOption = (props: SelectProps) =>
     i18n: props.i18n || false,
     schema: {
       type: "string",
-      ...omit(props, ["i18n", "required", "options", "binding"]),
+      ...omit(props, ["i18n", "ai", "required", "options", "binding"]),
       oneOf: props.options.map((option) => ({ const: option.value, title: option.title })),
     },
     uiSchema: {
@@ -228,7 +228,7 @@ export const Color = (props: ControlProps) =>
     i18n: props.i18n || false,
     schema: {
       type: "string",
-      ...omit(props, ["i18n", "required"]),
+      ...omit(props, ["i18n", "ai", "required"]),
     },
     uiSchema: {
       "ui:widget": "color",
@@ -262,7 +262,7 @@ export const RichText = (props: ControlProps) =>
     i18n: props.i18n || false,
     schema: {
       type: "string",
-      ...omit(props, ["i18n", "required"]),
+      ...omit(props, ["i18n", "ai", "required"]),
     },
     uiSchema: {
       "ui:widget": "richtext",
@@ -375,7 +375,7 @@ export const Image = (props: ControlProps) =>
     i18n: props.i18n || false,
     schema: {
       type: "string",
-      ...omit(props, ["i18n", "required"]),
+      ...omit(props, ["i18n", "ai", "required"]),
     },
     uiSchema: {
       "ui:widget": "image",

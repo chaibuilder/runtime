@@ -9,7 +9,7 @@ export const Code = (props: ControlProps) =>
     dataType: "string",
     schema: {
       type: "string",
-      ...omit(props, ["i18n", "required"]),
+      ...omit(props, ["i18n", "ai", "required"]),
     },
     uiSchema: {
       "ui:widget": "code",
