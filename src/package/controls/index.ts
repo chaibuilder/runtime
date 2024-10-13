@@ -13,7 +13,8 @@ export interface ControlDefinition {
   properties?: { [key: string]: ControlDefinition };
   required?: boolean;
   schema: any;
-  ai?: Record<string, any>;
+  ai?: boolean;
+  i18n?: boolean;
   type: "slots" | "singular" | "list" | "model" | "styles";
   uiSchema: any;
 }
@@ -99,7 +100,8 @@ export const SingleLineText = (props: InputProps) =>
     binding: get(props, "binding", true),
     dataType: "string",
     required: props.required || false,
-    ai: props.ai || undefined,
+    ai: props.ai || false,
+    i18n: props.i18n || false,
     schema: {
       type: "string",
       ...omit(props, ["ai", "required"]),
@@ -126,7 +128,8 @@ export const MultilineText = (props: TextAreaProps) =>
     binding: get(props, "binding", true),
     dataType: "string",
     required: props.required || false,
-    ai: props.ai || undefined,
+    ai: props.ai || false,
+    i18n: props.i18n || false,
     schema: {
       type: "string",
       ...omit(props, ["i18n", "required", "rows"]),
@@ -155,7 +158,7 @@ export const Checkbox = (props: CheckboxProps) =>
     dataType: "boolean",
     hidden: get(props, "hidden", false),
     binding: get(props, "binding", true),
-    ai: props.ai || undefined,
+    ai: props.ai || false,
     schema: {
       type: "boolean",
       ...omit(props, ["i18n", "required"]),
@@ -181,7 +184,8 @@ export const Numeric = (props: NumberProps) =>
     binding: get(props, "binding", true),
     dataType: "number",
     required: props.required || false,
-    ai: props.ai || undefined,
+    ai: props.ai || false,
+    i18n: props.i18n || false,
     schema: {
       type: "number",
       ...omit(props, ["i18n", "required"]),
@@ -201,7 +205,8 @@ export const SelectOption = (props: SelectProps) =>
     binding: get(props, "binding", true),
     required: props.required || false,
     dataType: "string",
-    ai: props.ai || undefined,
+    ai: props.ai || false,
+    i18n: props.i18n || false,
     schema: {
       type: "string",
       ...omit(props, ["i18n", "required", "options", "binding"]),
@@ -215,12 +220,12 @@ export const SelectOption = (props: SelectProps) =>
 export const Color = (props: ControlProps) =>
   ({
     type: "singular",
-    i18n: props.i18n || false,
     default: props.default || "",
     hidden: get(props, "hidden", false),
     binding: get(props, "binding", true),
     dataType: "string",
-    ai: props.ai || undefined,
+    ai: props.ai || false,
+    i18n: props.i18n || false,
     schema: {
       type: "string",
       ...omit(props, ["i18n", "required"]),
@@ -253,7 +258,8 @@ export const RichText = (props: ControlProps) =>
     default: props.default || "",
     binding: get(props, "binding", true),
     dataType: "string",
-    ai: props.ai || undefined,
+    ai: props.ai || false,
+    i18n: props.i18n || false,
     schema: {
       type: "string",
       ...omit(props, ["i18n", "required"]),
@@ -290,7 +296,8 @@ export const List = (props: ListProps) =>
     itemProperties: props.itemProperties,
     binding: get(props, "binding", true),
     title: props.title,
-    ai: props.ai || undefined,
+    ai: props.ai || false,
+    i18n: props.i18n || false,
     dataType: "array",
     default: props.default || [],
     itemTitle: props.getItemLabel ? props.getItemLabel({}) : () => "",
@@ -315,7 +322,8 @@ export const Icon = (props: ControlProps) =>
     binding: get(props, "binding", true),
     type: "singular",
     dataType: "string",
-    ai: props.ai || undefined,
+    ai: props.ai || false,
+    i18n: props.i18n || false,
     schema: {
       type: "string",
       title: "Icon",
@@ -340,7 +348,8 @@ export const Link = (props: LinkProps) =>
     type: "singular",
     binding: get(props, "binding", true),
     dataType: "object",
-    ai: props.ai || undefined,
+    ai: props.ai || false,
+    i18n: props.i18n || false,
     schema: {
       type: "object",
       ...(props || {}),
@@ -362,7 +371,8 @@ export const Image = (props: ControlProps) =>
     hidden: get(props, "hidden", false),
     binding: get(props, "binding", true),
     dataType: "string",
-    ai: props.ai || undefined,
+    ai: props.ai || false,
+    i18n: props.i18n || false,
     schema: {
       type: "string",
       ...omit(props, ["i18n", "required"]),

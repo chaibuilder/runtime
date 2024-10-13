@@ -8,13 +8,14 @@ import {
   StylesControlDefinition,
 } from "./index.ts";
 
-export interface ChaiBuilderBlock {
+export interface IChaiBuilderBlock {
   // required
   type: string;
   label: string;
   group: string;
 
   // optional
+  server?: boolean;
   blocks?: ChaiBlock[] | (() => ChaiBlock[]);
   category?: string;
   preview?: string;
@@ -28,7 +29,6 @@ export interface ChaiBuilderBlock {
       | ListControlDefinition
       | SlotControlDefinition;
   };
-  propsEditor?: React.ComponentType<any>;
   builderComponent?: React.ComponentType<any>;
   canAcceptBlock?: (type: string) => boolean;
   canDelete?: () => boolean;

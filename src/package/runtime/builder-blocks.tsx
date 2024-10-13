@@ -1,6 +1,6 @@
 import { endsWith, get, keys, mapValues, pick, pickBy, set } from "lodash-es";
 import React from "react";
-import { ChaiBuilderBlock } from "../controls/types.ts";
+import { IChaiBuilderBlock } from "../controls/types.ts";
 
 type ChaiBlock = {
   _id: string;
@@ -10,8 +10,7 @@ type ChaiBlock = {
   _type: string;
 } & Record<string, string>;
 
-
-const BUILDER_BLOCKS: Record<string, ChaiBuilderBlock> = {};
+const BUILDER_BLOCKS: Record<string, IChaiBuilderBlock> = {};
 
 export const useChaiBlocks = () => {
   return BUILDER_BLOCKS;
@@ -21,7 +20,7 @@ export const useChaiBlock = (type: string) => {
   return get(BUILDER_BLOCKS, type, null);
 };
 
-export const getBlockComponent = (type: string): ChaiBuilderBlock | null => {
+export const getBlockComponent = (type: string): IChaiBuilderBlock | null => {
   return get(BUILDER_BLOCKS, type, null);
 };
 
@@ -51,7 +50,7 @@ export const syncBlocksWithDefaults = (blocks: ChaiBlock[]): ChaiBlock[] => {
   });
 };
 
-const registerInternalBlock = (component: React.ComponentType<ChaiBlock>, options: ChaiBuilderBlock) => {
+const registerInternalBlock = (component: React.ComponentType<ChaiBlock>, options: IChaiBuilderBlock) => {
   set(BUILDER_BLOCKS, options.type, { component: component, ...options });
 };
 /**
@@ -59,6 +58,6 @@ const registerInternalBlock = (component: React.ComponentType<ChaiBlock>, option
  * @param component
  * @param options
  */
-export const registerChaiBlock = (component: React.ComponentType<ChaiBlock & any>, options: ChaiBuilderBlock) => {
+export const registerChaiBlock = (component: React.ComponentType<ChaiBlock & any>, options: IChaiBuilderBlock) => {
   registerInternalBlock(component, { ...options, ...{ category: options.category || "custom" } });
 };
