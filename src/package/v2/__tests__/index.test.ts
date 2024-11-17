@@ -20,10 +20,12 @@ describe("registerChaiBuilderBlockProps", () => {
       properties: {
         title: {
           type: "string",
+          default: "This is a title",
           ui: { "ui:widget": "textarea" },
         },
         description: {
           type: "string",
+          default: "This is a description",
           ui: { "ui:widget": "markdown" },
         },
       },
@@ -36,9 +38,11 @@ describe("registerChaiBuilderBlockProps", () => {
         properties: {
           title: {
             type: "string",
+            default: "This is a title",
           },
           description: {
             type: "string",
+            default: "This is a description",
           },
         },
       },
@@ -58,12 +62,14 @@ describe("registerChaiBuilderBlockProps", () => {
       properties: {
         title: {
           type: "string",
+          default: "This is a title",
           ui: {
             "ui:widget": "textarea",
           },
         },
         enabled: {
           type: "boolean",
+          default: true,
         },
       },
     };
@@ -75,9 +81,11 @@ describe("registerChaiBuilderBlockProps", () => {
         properties: {
           title: {
             type: "string",
+            default: "This is a title",
           },
           enabled: {
             type: "boolean",
+            default: true,
           },
         },
       },
@@ -94,6 +102,7 @@ describe("registerChaiBuilderBlockProps", () => {
       properties: {
         title: {
           type: "string",
+          default: "This is a title",
         },
       },
       ui: {
@@ -108,6 +117,7 @@ describe("registerChaiBuilderBlockProps", () => {
         properties: {
           title: {
             type: "string",
+            default: "This is a title",
           },
         },
       },
@@ -122,6 +132,7 @@ describe("registerChaiBuilderBlockProps", () => {
       properties: {
         title: {
           type: "string",
+          default: "This is a title",
           ui: {
             "ui:widget": "textarea",
           },
@@ -139,6 +150,7 @@ describe("registerChaiBuilderBlockProps", () => {
         properties: {
           title: {
             type: "string",
+            default: "This is a title",
           },
         },
       },
@@ -155,8 +167,8 @@ describe("registerChaiBuilderBlockProps", () => {
     expect(() =>
       registerChaiBlockSchema({
         properties: {
-          _id: { type: "string" }, // reserved prop
-          normalProp: { type: "string" },
+          _id: { type: "string", default: "This is an id" }, // reserved prop
+          normalProp: { type: "string", default: "This is a normal prop" },
         },
       }),
     ).toThrow("Reserved props are not allowed");

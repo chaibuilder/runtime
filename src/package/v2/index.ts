@@ -7,6 +7,7 @@ const STYLES_KEY = "#styles:";
 type ChaiBlockUiSchema = UiSchema;
 type ChaiBlockPropSchema = RJSFSchema & {
   ui?: ChaiBlockUiSchema;
+  default: any;
 };
 
 type ChaiBlockSchema = {
@@ -40,10 +41,11 @@ export const registerChaiBlockSchema = (blockSchema: ChaiBlockSchema): ChaiBlock
   };
 };
 
-export const StylesProp = (): ChaiBlockPropSchema => {
+export const StylesProp = (defaultClasses: string = ""): ChaiBlockPropSchema => {
   return {
     type: "string",
     styles: true,
+    default: `${STYLES_KEY},${defaultClasses}`,
     ui: { "ui:widget": "hidden" },
   };
 };
