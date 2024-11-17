@@ -40,14 +40,15 @@ export const registerChaiBlockSchema = (blockSchema: ChaiBlockSchema): ChaiBlock
   };
 };
 
-export const StylesProp = (defaultClasses: string): ChaiBlockPropSchema => {
+export const StylesProp = (): ChaiBlockPropSchema => {
   return {
     type: "string",
     styles: true,
-    default: `${STYLES_KEY},${defaultClasses}`,
     ui: { "ui:widget": "hidden" },
   };
 };
+
+export const defaultChaiStyles = (classes: string) => `${STYLES_KEY},${classes}`;
 
 export type {
   ChaiBlock,

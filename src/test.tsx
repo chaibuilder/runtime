@@ -19,7 +19,7 @@ const props = registerChaiBlockSchema({
     content: "This is a heading",
   },
   properties: {
-    styles: StylesProp("text-2xl font-bold"),
+    styles: StylesProp(),
     level: {
       type: "string",
       enum: ["h1", "h2", "h3", "h4", "h5", "h6"],

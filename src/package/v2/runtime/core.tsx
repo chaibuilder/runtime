@@ -38,7 +38,7 @@ export const getRegisteredChaiBlock = memoize(
 );
 
 export const getDefaultBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
-  return get(REGISTERED_CHAI_BLOCKS, `${type}.propsSchema.default`, {});
+  return get(REGISTERED_CHAI_BLOCKS, `${type}.schema.default`, {});
 });
 
 export const getI18nBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
