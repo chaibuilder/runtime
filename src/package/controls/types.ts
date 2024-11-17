@@ -1,15 +1,10 @@
 import React from "react";
 import { ChaiBlock } from "../ChaiBlock.ts";
-import {
-  ControlDefinition,
-  ListControlDefinition,
-  ModelControlDefinition,
-  SlotControlDefinition,
-  StylesControlDefinition,
-} from "./index.ts";
+import { ChaiBlockComponentProps, ChaiBlockPropsSchema, ChaiBlockUiSchema } from "../v2/index.ts";
 
-export interface IChaiBuilderBlock {
+export interface ChaiBlockDefinition<T = Record<string, any>> {
   // required
+  component: React.ComponentType<ChaiBlockComponentProps<T>>;
   type: string;
   label: string;
   group: string;
@@ -21,15 +16,16 @@ export interface IChaiBuilderBlock {
   preview?: string;
   hidden?: boolean | ((parentType?: string) => boolean);
   icon?: React.ReactNode | React.ComponentType;
-  props?: {
-    [key: string]:
-      | ControlDefinition
-      | ModelControlDefinition
-      | StylesControlDefinition
-      | ListControlDefinition
-      | SlotControlDefinition;
-  };
-  builderComponent?: React.ComponentType<any>;
+  builderComponent?: React.ComponentType<ChaiBlockComponentProps<T>>;
+
+  //props
+  propsSchema?: object | Omit<ChaiBlockPropsSchema, "ui">;
+  uiSchema?: ChaiBlockUiSchema;
+
+  i18nProps?: string[];
+  aiProps?: string[];
+
+  // callbacks
   canAcceptBlock?: (type: string) => boolean;
   canDelete?: () => boolean;
   canMove?: () => boolean;

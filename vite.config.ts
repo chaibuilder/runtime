@@ -6,12 +6,16 @@ import dts from "vite-plugin-dts";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), dts({ rollupTypes: true })],
+  // @ts-expect-error Vitest types are not included in the types field
+  test: {
+    include: ["src/**/*.test.{ts,tsx}"],
+    globals: true,
+  },
   build: {
     emptyOutDir: true,
     lib: {
       entry: {
-        index: resolve(__dirname, "src/package/runtime/index.tsx"),
-        controls: resolve(__dirname, "src/package/controls/index.ts"),
+        index: resolve(__dirname, "src/package/v2/index.ts"),
       },
       formats: ["es", "cjs"],
     },

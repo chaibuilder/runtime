@@ -1,5 +1,6 @@
 import React from "react";
-import { STYLES_KEY } from "./package/runtime/CONTROLS.ts";
+
+const STYLES_KEY = "#styles:";
 
 type CoreBlock = {
   readonly _id: string;

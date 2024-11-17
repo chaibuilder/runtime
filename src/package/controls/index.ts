@@ -1,9 +1,9 @@
 import { get, omit } from "lodash-es";
-import { STYLES_KEY } from "../runtime/CONTROLS.ts";
-import { StylingPresets } from "../runtime/STYLING_PRESETS.ts";
 import { Code } from "./Code.ts";
 
-export { Code };
+const STYLES_KEY = "#styles:";
+
+export { Code, STYLES_KEY };
 
 export interface ControlDefinition {
   default?: any;
@@ -305,7 +305,7 @@ export const List = (props: ListProps) =>
 
 type StylesProps = {
   default?: string;
-  presets?: StylingPresets;
+  presets?: any;
 };
 
 export const Styles = (props: StylesProps) =>

@@ -1,7 +1,8 @@
 import { ChaiBlock } from "./package/ChaiBlock.ts";
 import { each, get, isEmpty, isString, memoize } from "lodash-es";
-import { STYLES_KEY } from "./package/runtime/CONTROLS.ts";
 import { twMerge } from "tailwind-merge";
+
+const STYLES_KEY = "#styles:";
 
 const generateClassNames = memoize((styles: string) => {
   const stylesArray = styles.replace(STYLES_KEY, "").split(",");
