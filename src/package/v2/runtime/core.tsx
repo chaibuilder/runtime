@@ -1,6 +1,7 @@
-import { endsWith, get, has, keys, memoize, pick, pickBy, set } from "lodash-es";
+import { cloneDeep, endsWith, get, has, keys, memoize, omitBy, pick, pickBy, set } from "lodash-es";
 import React, { useMemo } from "react";
 import type { ChaiBlockDefinition } from "../../controls/types.ts";
+import { RJSFSchema, UiSchema } from "@rjsf/utils";
 
 export type ChaiBlock<T = Record<string, string>> = {
   _id: string;
@@ -47,6 +48,18 @@ export const getI18nBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_BLO
 export const getAIBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
   return get(REGISTERED_CHAI_BLOCKS, `${type}.aiProps`, []);
 });
+
+export const getBlockFormSchemas = memoize(
+  (type: keyof typeof REGISTERED_CHAI_BLOCKS): { schema: RJSFSchema; uiSchema: UiSchema } => {
+    const registeredBlock = getRegisteredChaiBlock(type);
+    const schema = cloneDeep(registeredBlock.schema);
+    const properties = get(schema, "properties", {});
+    const nonStylesProperties = omitBy(properties, (prop) => prop.styles === true);
+    set(schema, "properties", nonStylesProperties);
+    const uiSchema = get(REGISTERED_CHAI_BLOCKS, `${type}.uiSchema`, {});
+    return { schema, uiSchema };
+  },
+);
 
 export const syncBlocksWithDefaults = (blocks: ChaiBlock[]): ChaiBlock[] => {
   return blocks.map((block) => {

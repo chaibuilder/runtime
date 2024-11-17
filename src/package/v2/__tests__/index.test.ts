@@ -1,23 +1,23 @@
-import { registerChaiBlockProps } from "../index";
-import type { ChaiBlockPropsSchema } from "../index";
+import { registerChaiBlockSchema } from "../index";
+import type { ChaiBlockSchema } from "../index";
 
 describe("registerChaiBuilderBlockProps", () => {
   it("should handle empty props", () => {
     const input = {
-      props: {},
+      properties: {},
     };
 
-    const result = registerChaiBlockProps(input);
+    const result = registerChaiBlockSchema(input);
 
     expect(result).toEqual({
-      propsSchema: {},
+      schema: {},
       uiSchema: {},
     });
   });
 
   it("should extract UI schemas from props", () => {
-    const input: ChaiBlockPropsSchema = {
-      props: {
+    const input: ChaiBlockSchema = {
+      properties: {
         title: {
           type: "string",
           ui: { "ui:widget": "textarea" },
@@ -29,11 +29,11 @@ describe("registerChaiBuilderBlockProps", () => {
       },
     };
 
-    const result = registerChaiBlockProps(input);
+    const result = registerChaiBlockSchema(input);
 
     expect(result).toEqual({
-      propsSchema: {
-        props: {
+      schema: {
+        properties: {
           title: {
             type: "string",
           },
@@ -54,8 +54,8 @@ describe("registerChaiBuilderBlockProps", () => {
   });
 
   it("should handle mixed props with and without UI schemas", () => {
-    const input: ChaiBlockPropsSchema = {
-      props: {
+    const input: ChaiBlockSchema = {
+      properties: {
         title: {
           type: "string",
           ui: {
@@ -68,11 +68,11 @@ describe("registerChaiBuilderBlockProps", () => {
       },
     };
 
-    const result = registerChaiBlockProps(input);
+    const result = registerChaiBlockSchema(input);
 
     expect(result).toEqual({
-      propsSchema: {
-        props: {
+      schema: {
+        properties: {
           title: {
             type: "string",
           },
@@ -90,8 +90,8 @@ describe("registerChaiBuilderBlockProps", () => {
   });
 
   it("should handle root level UI schema", () => {
-    const input: ChaiBlockPropsSchema = {
-      props: {
+    const input: ChaiBlockSchema = {
+      properties: {
         title: {
           type: "string",
         },
@@ -101,11 +101,11 @@ describe("registerChaiBuilderBlockProps", () => {
       },
     };
 
-    const result = registerChaiBlockProps(input);
+    const result = registerChaiBlockSchema(input);
 
     expect(result).toEqual({
-      propsSchema: {
-        props: {
+      schema: {
+        properties: {
           title: {
             type: "string",
           },
@@ -118,8 +118,8 @@ describe("registerChaiBuilderBlockProps", () => {
   });
 
   it("should merge root and prop level UI schemas", () => {
-    const input: ChaiBlockPropsSchema = {
-      props: {
+    const input: ChaiBlockSchema = {
+      properties: {
         title: {
           type: "string",
           ui: {
@@ -132,11 +132,11 @@ describe("registerChaiBuilderBlockProps", () => {
       },
     };
 
-    const result = registerChaiBlockProps(input);
+    const result = registerChaiBlockSchema(input);
 
     expect(result).toEqual({
-      propsSchema: {
-        props: {
+      schema: {
+        properties: {
           title: {
             type: "string",
           },
@@ -153,8 +153,8 @@ describe("registerChaiBuilderBlockProps", () => {
 
   it("throws error for reserved props", () => {
     expect(() =>
-      registerChaiBlockProps({
-        props: {
+      registerChaiBlockSchema({
+        properties: {
           _id: { type: "string" }, // reserved prop
           normalProp: { type: "string" },
         },

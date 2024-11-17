@@ -7,6 +7,7 @@ import {
   useRegisteredChaiBlocks,
   getAIBlockProps,
   getI18nBlockProps,
+  getBlockFormSchemas,
 } from "./core";
 
 export {
@@ -22,6 +23,7 @@ export {
   getDefaultBlockProps,
   getI18nBlockProps,
   getAIBlockProps,
+  getBlockFormSchemas,
 
   // helpers
   syncBlocksWithDefaults,

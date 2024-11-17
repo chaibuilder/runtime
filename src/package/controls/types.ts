@@ -1,6 +1,6 @@
 import React from "react";
 import { ChaiBlock } from "../ChaiBlock.ts";
-import { ChaiBlockComponentProps, ChaiBlockPropsSchema, ChaiBlockUiSchema } from "../v2/index.ts";
+import { ChaiBlockComponentProps, ChaiBlockSchema, ChaiBlockUiSchema } from "../v2/index.ts";
 
 export interface ChaiBlockDefinition<T = Record<string, any>> {
   // required
@@ -19,7 +19,7 @@ export interface ChaiBlockDefinition<T = Record<string, any>> {
   builderComponent?: React.ComponentType<ChaiBlockComponentProps<T>>;
 
   //props
-  propsSchema?: object | Omit<ChaiBlockPropsSchema, "ui">;
+  schema?: ChaiBlockSchema;
   uiSchema?: ChaiBlockUiSchema;
 
   i18nProps?: string[];

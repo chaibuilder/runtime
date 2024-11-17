@@ -1,6 +1,6 @@
 import { registerChaiBlock } from "./package/v2/runtime";
 import { ChaiBlockComponentProps, ChaiStyles } from "./package/v2/runtime/core";
-import { registerChaiBlockProps, StylesProp } from "./package/v2";
+import { registerChaiBlockSchema, StylesProp } from "./package/v2";
 
 type HeadingProps = {
   level: string;
@@ -13,12 +13,12 @@ const Heading = (props: ChaiBlockComponentProps<HeadingProps>) => {
   return <div>{props.children}</div>;
 };
 
-const props = registerChaiBlockProps({
+const props = registerChaiBlockSchema({
   default: {
     level: "h2",
     content: "This is a heading",
   },
-  props: {
+  properties: {
     styles: StylesProp("text-2xl font-bold"),
     level: {
       type: "string",
@@ -43,4 +43,7 @@ registerChaiBlock<HeadingProps>(Heading, {
   ...props,
   i18nProps: ["content", "image.alt"],
   aiProps: ["content", "image.alt"],
+  schema: {
+    properties: {},
+  },
 });
