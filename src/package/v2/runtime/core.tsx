@@ -2,7 +2,7 @@ import { cloneDeep, each, endsWith, get, has, keys, memoize, omitBy, pick, pickB
 import React, { useMemo } from "react";
 import type { ChaiBlockDefinition } from "../../controls/types.ts";
 import { RJSFSchema, UiSchema } from "@rjsf/utils";
-import { ChaiBlockPropSchema, defaultChaiStyles } from "../index.ts";
+import { ChaiBlockPropSchema } from "../index.ts";
 
 export type ChaiBlock<T = Record<string, string>> = {
   _id: string;
@@ -43,7 +43,7 @@ export const getDefaultBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_
   const defaultProps: Record<string, any> = {};
   each(properties, (propSchema: ChaiBlockPropSchema, key) => {
     if (propSchema.styles === true) {
-      set(defaultProps, key, defaultChaiStyles(propSchema.default as string));
+      set(defaultProps, key, propSchema.default);
     } else {
       set(defaultProps, key, propSchema.default);
     }
