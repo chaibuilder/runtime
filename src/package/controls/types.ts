@@ -1,8 +1,11 @@
 import React from "react";
-import { ChaiBlock } from "../ChaiBlock.ts";
-import { ChaiBlockComponentProps, ChaiBlockSchema, ChaiBlockUiSchema } from "../v2/index.ts";
+import { ChaiBlock, ChaiBlockComponentProps, ChaiBlockSchema, ChaiBlockUiSchema } from "../v2/index.ts";
 
-export interface ChaiBlockDefinition<T = Record<string, any>> {
+export type ChaiDataProviderArgs<T = Record<string, any>, K = Record<string, any>> = {
+  block: ChaiBlock<T>;
+} & K;
+
+export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string, any>, D = Record<string, any>> {
   // required
   component: React.ComponentType<ChaiBlockComponentProps<T>>;
   type: string;
@@ -10,13 +13,13 @@ export interface ChaiBlockDefinition<T = Record<string, any>> {
   group: string;
 
   // optional
-  server?: boolean;
   blocks?: ChaiBlock[] | (() => ChaiBlock[]);
   category?: string;
   preview?: string;
   hidden?: boolean | ((parentType?: string) => boolean);
   icon?: React.ReactNode | React.ComponentType;
   builderComponent?: React.ComponentType<ChaiBlockComponentProps<T>>;
+  dataProvider?: (args: D) => Promise<K>;
 
   //props
   schema?: ChaiBlockSchema;

@@ -85,16 +85,20 @@ export const syncBlocksWithDefaults = (blocks: ChaiBlock[]): ChaiBlock[] => {
   });
 };
 
-const registerInternalBlock = <T extends Record<string, any>>(
+const registerInternalBlock = <T, K, D>(
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
-  options: Omit<ChaiBlockDefinition<T>, "component">,
+  options: Omit<ChaiBlockDefinition<T, K, D>, "component">,
 ) => {
   set(REGISTERED_CHAI_BLOCKS, options.type, { component: component, ...options });
 };
 
-export const registerChaiBlock = <T extends Record<string, any>>(
+export const registerChaiBlock = <
+  T extends Record<string, any> = Record<string, any>,
+  K extends Record<string, any> = Record<string, any>,
+  D extends Record<string, any> = Record<string, any>,
+>(
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
-  options: Omit<ChaiBlockDefinition<T>, "component">,
+  options: Omit<ChaiBlockDefinition<T, K, D>, "component">,
 ) => {
-  registerInternalBlock<T>(component, { ...options, ...{ category: options.category || "custom" } });
+  registerInternalBlock<T, K, D>(component, { ...options, ...{ category: options.category || "custom" } });
 };

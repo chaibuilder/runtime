@@ -1,11 +1,15 @@
 import { registerChaiBlock } from "./package/v2/runtime";
-import { ChaiBlockComponentProps, ChaiStyles } from "./package/v2/runtime/core";
+import { ChaiBlockComponentProps } from "./package/v2/runtime/core";
 import { registerChaiBlockSchema, StylesProp } from "./package/v2";
+import { ChaiDataProviderArgs } from "./package/controls/types";
 
 type HeadingProps = {
   level: string;
   content: string;
-  styles: ChaiStyles;
+};
+
+type ServerProps = {
+  richText: string;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -34,7 +38,7 @@ const schemas = registerChaiBlockSchema({
   ui: { "ui:order": ["level", "content"] },
 });
 
-registerChaiBlock<HeadingProps>(Heading, {
+registerChaiBlock<HeadingProps, ServerProps, ChaiDataProviderArgs<HeadingProps, { params: any }>>(Heading, {
   type: "Heading",
   label: "Heading",
   group: "Typography",
@@ -43,5 +47,10 @@ registerChaiBlock<HeadingProps>(Heading, {
   aiProps: ["content", "image.alt"],
   schema: {
     properties: {},
+  },
+  dataProvider: async (args) => {
+    return {
+      richText: args.block.content,
+    };
   },
 });
