@@ -1,5 +1,5 @@
 import { registerChaiBlock } from "./package/v2/runtime";
-import { ChaiBlockComponentProps } from "./package/v2/runtime/core";
+import { ChaiBlockComponentProps, registerChaiServerBlock } from "./package/v2/runtime/core";
 import { registerChaiBlockSchema, StylesProp } from "./package/v2";
 import { ChaiDataProviderArgs } from "./package/controls/types";
 
@@ -48,6 +48,15 @@ registerChaiBlock<HeadingProps, ServerProps, ChaiDataProviderArgs<HeadingProps, 
   schema: {
     properties: {},
   },
+  dataProvider: async (args) => {
+    return {
+      richText: args.block.content,
+    };
+  },
+});
+
+registerChaiServerBlock<HeadingProps, ServerProps, ChaiDataProviderArgs<HeadingProps, { params: any }>>(Heading, {
+  type: "Heading",
   dataProvider: async (args) => {
     return {
       richText: args.block.content,

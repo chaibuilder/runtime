@@ -1,6 +1,7 @@
 import type { RJSFSchema, UiSchema } from "@rjsf/utils";
 import { each, get, isEmpty, intersection, keys, omit } from "lodash-es";
 import type { ChaiBlock, ChaiBlockComponentProps, ChaiStyles } from "./runtime/core.tsx";
+import { ChaiBlockDefinition, ChaiDataProviderArgs, ChaiServerBlockDefinition } from "../controls/types.ts";
 
 const STYLES_KEY = "#styles:";
 
@@ -60,5 +61,8 @@ export type {
   ChaiBlockSchemas,
   ChaiBlockUiSchema,
   ChaiStyles,
+  ChaiDataProviderArgs,
+  ChaiServerBlockDefinition,
+  ChaiBlockDefinition,
 };
 export * from "./runtime/index.tsx";

@@ -35,3 +35,9 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
   canDuplicate?: () => boolean;
   canBeNested?: (type: string) => boolean;
 }
+
+export interface ChaiServerBlockDefinition<T = Record<string, any>, K = Record<string, any>, D = Record<string, any>> {
+  component: React.ComponentType<ChaiBlockComponentProps<T>>;
+  type: string;
+  dataProvider?: (args: D) => Promise<K>;
+}
