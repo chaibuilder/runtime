@@ -42,6 +42,10 @@ export const getDefaultBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_
   const properties = get(REGISTERED_CHAI_BLOCKS, `${type}.schema.properties`, {});
   const defaultProps: Record<string, any> = {};
   each(properties, (propSchema: ChaiBlockPropSchema, key) => {
+    // skip until runtime props are implemented
+    if (has(propSchema, "runtime")) {
+      return;
+    }
     if (propSchema.styles === true) {
       set(defaultProps, key, propSchema.default);
     } else {
@@ -112,4 +116,15 @@ export const registerChaiServerBlock = <
   options: Omit<ChaiServerBlockDefinition<T, K, D>, "component">,
 ) => {
   set(REGISTERED_CHAI_BLOCKS, options.type, { component: component, ...options });
+};
+
+export const closestBlockProp = (blockType: keyof typeof REGISTERED_CHAI_BLOCKS, prop: string): ChaiBlockPropSchema => {
+  return {
+    type: "null",
+    block: blockType,
+    prop,
+    default: null,
+    runtime: true,
+    ui: { "ui:widget": "hidden" },
+  };
 };

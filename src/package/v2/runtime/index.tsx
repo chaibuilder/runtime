@@ -8,6 +8,8 @@ import {
   getAIBlockProps,
   getI18nBlockProps,
   getBlockFormSchemas,
+  registerChaiServerBlock,
+  closestBlockProp,
 } from "./core";
 
 export {
@@ -17,6 +19,7 @@ export {
 
   // functions
   registerChaiBlock,
+  registerChaiServerBlock,
 
   // getters
   getRegisteredChaiBlock,
@@ -24,6 +27,7 @@ export {
   getI18nBlockProps,
   getAIBlockProps,
   getBlockFormSchemas,
+  closestBlockProp,
 
   // helpers
   syncBlocksWithDefaults,

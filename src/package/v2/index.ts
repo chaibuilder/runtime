@@ -51,9 +51,30 @@ export const StylesProp = (defaultClasses: string = ""): ChaiBlockPropSchema => 
   };
 };
 
+export const stylesProp = (defaultClasses: string = ""): ChaiBlockPropSchema => {
+  return {
+    type: "string",
+    styles: true,
+    default: `${STYLES_KEY},${defaultClasses}`,
+    ui: { "ui:widget": "hidden" },
+  };
+};
+
+export const runtimeProp = (options: ChaiBlockPropSchema): ChaiBlockPropSchema => {
+  return {
+    runtime: true,
+    ...options,
+  };
+};
+
 export const defaultChaiStyles = (classes: string) => `${STYLES_KEY},${classes}`;
 
+type ChaiAsyncProp<T> = T;
+type ChaiRuntimeProp<T> = T;
+
 export type {
+  ChaiAsyncProp,
+  ChaiRuntimeProp,
   ChaiBlock,
   ChaiBlockPropSchema,
   ChaiBlockSchema,

@@ -19,7 +19,7 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
   hidden?: boolean | ((parentType?: string) => boolean);
   icon?: React.ReactNode | React.ComponentType;
   builderComponent?: React.ComponentType<ChaiBlockComponentProps<T>>;
-  dataProvider?: (args: D) => Promise<K>;
+  dataProvider?: (args: D) => K;
 
   //props
   schema?: ChaiBlockSchema;

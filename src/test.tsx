@@ -1,6 +1,6 @@
 import { registerChaiBlock } from "./package/v2/runtime";
 import { ChaiBlockComponentProps, registerChaiServerBlock } from "./package/v2/runtime/core";
-import { registerChaiBlockSchema, StylesProp } from "./package/v2";
+import { closestBlockProp, registerChaiBlockSchema, runtimeProp, stylesProp } from "./package/v2";
 import { ChaiDataProviderArgs } from "./package/controls/types";
 
 type HeadingProps = {
@@ -19,7 +19,12 @@ const Heading = (props: ChaiBlockComponentProps<HeadingProps>) => {
 
 const schemas = registerChaiBlockSchema({
   properties: {
-    styles: StylesProp("text-2xl font-bold"),
+    showHide: runtimeProp({
+      type: "boolean",
+      default: true,
+    }),
+    show: closestBlockProp("Heading", "level"),
+    styles: stylesProp("text-2xl font-bold"),
     level: {
       type: "string",
       enum: ["h1", "h2", "h3", "h4", "h5", "h6"],
@@ -48,7 +53,7 @@ registerChaiBlock<HeadingProps, ServerProps, ChaiDataProviderArgs<HeadingProps, 
   schema: {
     properties: {},
   },
-  dataProvider: async (args) => {
+  dataProvider: (args) => {
     return {
       richText: args.block.content,
     };
