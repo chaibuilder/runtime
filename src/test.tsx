@@ -53,11 +53,7 @@ registerChaiBlock<HeadingProps, ServerProps, ChaiDataProviderArgs<HeadingProps, 
   schema: {
     properties: {},
   },
-  dataProvider: (args) => {
-    return {
-      richText: args.block.content,
-    };
-  },
+  dataProvider: (args) => ({ richText: args.block.content + " from data provider" }),
 });
 
 registerChaiServerBlock<HeadingProps, ServerProps, ChaiDataProviderArgs<HeadingProps, { params: any }>>(Heading, {

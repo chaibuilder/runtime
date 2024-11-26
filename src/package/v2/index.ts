@@ -69,12 +69,12 @@ export const runtimeProp = (options: ChaiBlockPropSchema): ChaiBlockPropSchema =
 
 export const defaultChaiStyles = (classes: string) => `${STYLES_KEY},${classes}`;
 
-type ChaiAsyncProp<T> = T;
-type ChaiRuntimeProp<T> = T;
+type ChaiAsyncProp<T> = T | undefined;
+type ChaiClosestBlockProp<T> = T | undefined;
 
 export type {
   ChaiAsyncProp,
-  ChaiRuntimeProp,
+  ChaiClosestBlockProp as ChaiRuntimeProp,
   ChaiBlock,
   ChaiBlockPropSchema,
   ChaiBlockSchema,

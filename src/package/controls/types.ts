@@ -15,11 +15,14 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
   // optional
   blocks?: ChaiBlock[] | (() => ChaiBlock[]);
   category?: string;
+  wrapper?: boolean;
   preview?: string;
   hidden?: boolean | ((parentType?: string) => boolean);
   icon?: React.ReactNode | React.ComponentType;
   builderComponent?: React.ComponentType<ChaiBlockComponentProps<T>>;
+
   dataProvider?: (args: D) => K;
+  dataProviderDependencies?: (keyof T)[];
 
   //props
   schema?: ChaiBlockSchema;
