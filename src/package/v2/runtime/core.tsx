@@ -16,6 +16,7 @@ export type ChaiBlockComponentProps<T> = ChaiBlock<T> & {
   children?: React.ReactNode;
   blockProps: Record<string, string>;
   inBuilder: boolean;
+  lang: string;
 };
 
 export type ChaiStyles = {
