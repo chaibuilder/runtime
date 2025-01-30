@@ -1,7 +1,7 @@
 import type { RJSFSchema, UiSchema } from "@rjsf/utils";
-import { each, get, isEmpty, intersection, keys, omit } from "lodash-es";
-import type { ChaiBlock, ChaiBlockComponentProps, ChaiStyles } from "./runtime/core.tsx";
+import { each, get, intersection, isEmpty, keys, omit } from "lodash-es";
 import { ChaiBlockDefinition, ChaiDataProviderArgs, ChaiServerBlockDefinition } from "../controls/types.ts";
+import type { ChaiBlock, ChaiBlockComponentProps, ChaiStyles } from "./runtime/core.tsx";
 
 const STYLES_KEY = "#styles:";
 
@@ -12,7 +12,7 @@ type ChaiBlockPropSchema = RJSFSchema & {
 };
 
 type ChaiBlockSchema = {
-  properties: Record<string, ChaiBlockPropSchema>;
+  properties?: Record<string, ChaiBlockPropSchema>;
 } & Partial<Pick<ChaiBlockPropSchema, "required" | "dependencies" | "ui" | "title" | "description" | "default">>;
 
 type ChaiBlockSchemas = {
@@ -72,18 +72,10 @@ export const defaultChaiStyles = (classes: string) => `${STYLES_KEY},${classes}`
 type ChaiAsyncProp<T> = T | undefined;
 type ChaiClosestBlockProp<T> = T | undefined;
 
-export type {
-  ChaiAsyncProp,
-  ChaiClosestBlockProp as ChaiRuntimeProp,
-  ChaiBlock,
-  ChaiBlockPropSchema,
-  ChaiBlockSchema,
-  ChaiBlockComponentProps,
-  ChaiBlockSchemas,
-  ChaiBlockUiSchema,
-  ChaiStyles,
-  ChaiDataProviderArgs,
-  ChaiServerBlockDefinition,
-  ChaiBlockDefinition,
-};
 export * from "./runtime/index.tsx";
+export type {
+  ChaiAsyncProp, ChaiBlock, ChaiBlockComponentProps, ChaiBlockDefinition, ChaiBlockPropSchema,
+  ChaiBlockSchema, ChaiBlockSchemas,
+  ChaiBlockUiSchema, ChaiDataProviderArgs, ChaiClosestBlockProp as ChaiRuntimeProp, ChaiServerBlockDefinition, ChaiStyles
+};
+

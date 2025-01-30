@@ -22,7 +22,6 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
   builderComponent?: React.ComponentType<ChaiBlockComponentProps<T>>;
 
   dataProvider?: (args: D) => K;
-  dataProviderDependencies?: (keyof T)[];
 
   //props
   schema?: ChaiBlockSchema;

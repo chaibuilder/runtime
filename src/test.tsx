@@ -1,15 +1,10 @@
+import { closestBlockProp, registerChaiBlockSchema, runtimeProp, stylesProp } from "./package/v2";
 import { registerChaiBlock } from "./package/v2/runtime";
 import { ChaiBlockComponentProps, registerChaiServerBlock } from "./package/v2/runtime/core";
-import { closestBlockProp, registerChaiBlockSchema, runtimeProp, stylesProp } from "./package/v2";
-import { ChaiDataProviderArgs } from "./package/controls/types";
 
 type HeadingProps = {
   level: string;
   content: string;
-};
-
-type ServerProps = {
-  richText: string;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -43,24 +38,36 @@ const schemas = registerChaiBlockSchema({
   ui: { "ui:order": ["level", "content"] },
 });
 
-registerChaiBlock<HeadingProps, ServerProps, ChaiDataProviderArgs<HeadingProps, { params: any }>>(Heading, {
+registerChaiBlock(Heading, {
   type: "Heading",
   label: "Heading",
   group: "Typography",
   ...schemas,
   i18nProps: ["content", "image.alt"],
   aiProps: ["content", "image.alt"],
-  schema: {
-    properties: {},
-  },
+  ...registerChaiBlockSchema({
+    properties: { name: stylesProp("") },
+  }),
   dataProvider: (args) => ({ richText: args.block.content + " from data provider" }),
 });
 
-registerChaiServerBlock<HeadingProps, ServerProps, ChaiDataProviderArgs<HeadingProps, { params: any }>>(Heading, {
+registerChaiServerBlock(Heading, {
   type: "Heading",
-  dataProvider: async (args) => {
+  dataProvider: async (args: any) => {
     return {
       richText: args.block.content,
     };
   },
+});
+
+registerChaiBlock(Heading, {
+  type: "Heading",
+  label: "Heading",
+  group: "Typography",
+  i18nProps: ["content", "image.alt"],
+  aiProps: ["content", "image.alt"],
+  ...registerChaiBlockSchema({
+    properties: { name: stylesProp("") },
+  }),
+  dataProvider: (args) => ({ richText: args.block.content + " from data provider" }),
 });

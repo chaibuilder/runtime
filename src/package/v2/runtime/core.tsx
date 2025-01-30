@@ -37,7 +37,7 @@ export const getRegisteredChaiBlock = memoize(
   (type: keyof typeof REGISTERED_CHAI_BLOCKS): ChaiBlockDefinition | null => {
     return get(REGISTERED_CHAI_BLOCKS, type, null);
   },
-);
+) as any;
 
 export const getDefaultBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
   const properties = get(REGISTERED_CHAI_BLOCKS, `${type}.schema.properties`, {});
@@ -49,15 +49,15 @@ export const getDefaultBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_
     set(defaultProps, key, propSchema.default);
   });
   return defaultProps;
-});
+}) as any;
 
 export const getI18nBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
   return get(REGISTERED_CHAI_BLOCKS, `${type}.i18nProps`, []);
-});
+}) as any;
 
 export const getAIBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
   return get(REGISTERED_CHAI_BLOCKS, `${type}.aiProps`, []);
-});
+}) as any;
 
 export const getBlockFormSchemas = memoize(
   (type: keyof typeof REGISTERED_CHAI_BLOCKS): { schema: RJSFSchema; uiSchema: UiSchema } => {
@@ -69,7 +69,7 @@ export const getBlockFormSchemas = memoize(
     const uiSchema = get(REGISTERED_CHAI_BLOCKS, `${type}.uiSchema`, {});
     return { schema, uiSchema };
   },
-);
+) as any;
 
 export const syncBlocksWithDefaults = (blocks: ChaiBlock[]): ChaiBlock[] => {
   return blocks.map((block) => {
@@ -87,10 +87,12 @@ export const syncBlocksWithDefaults = (blocks: ChaiBlock[]): ChaiBlock[] => {
 
 const registerInternalBlock = <T, K, D>(
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
-  options: Omit<ChaiBlockDefinition<T, K, D>, "component">,
+  options: ChaiBlockDefinitionOptions<T, K, D>,
 ) => {
   set(REGISTERED_CHAI_BLOCKS, options.type, { component: component, ...options });
 };
+
+export type ChaiBlockDefinitionOptions<T, K, D> = Omit<ChaiBlockDefinition<T, K, D>, "component">;
 
 export const registerChaiBlock = <
   T extends Record<string, any> = Record<string, any>,
@@ -98,7 +100,7 @@ export const registerChaiBlock = <
   D extends Record<string, any> = Record<string, any>,
 >(
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
-  options: Omit<ChaiBlockDefinition<T, K, D>, "component">,
+  options: ChaiBlockDefinitionOptions<T, K, D>,
 ) => {
   registerInternalBlock<T, K, D>(component, { ...options, ...{ category: options.category || "custom" } });
 };
@@ -109,7 +111,7 @@ export const registerChaiServerBlock = <
   D extends Record<string, any> = Record<string, any>,
 >(
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
-  options: Omit<ChaiServerBlockDefinition<T, K, D>, "component">,
+  options: Pick<ChaiBlockDefinition<T, K, D>, "type" | "dataProvider">,
 ) => {
   set(REGISTERED_CHAI_BLOCKS, options.type, { component: component, ...options });
 };
