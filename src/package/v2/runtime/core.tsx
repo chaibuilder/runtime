@@ -1,7 +1,7 @@
+import type { RJSFSchema, UiSchema } from "@rjsf/utils";
 import { cloneDeep, each, endsWith, get, has, keys, memoize, omitBy, pick, pickBy, set } from "lodash-es";
 import React, { useMemo } from "react";
 import type { ChaiBlockDefinition, ChaiServerBlockDefinition } from "../../controls/types.ts";
-import { RJSFSchema, UiSchema } from "@rjsf/utils";
 import { ChaiBlockPropSchema } from "../index.ts";
 
 export type ChaiBlock<T = Record<string, string>> = {
