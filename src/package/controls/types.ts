@@ -5,7 +5,7 @@ export type ChaiDataProviderArgs<T = Record<string, any>, K = Record<string, any
   block: ChaiBlock<T>;
 } & K;
 
-export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string, any>, D = Record<string, any>> {
+export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string, any>> {
   // required
   component: React.ComponentType<ChaiBlockComponentProps<T>>;
   type: string;
@@ -21,7 +21,7 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
   icon?: React.ReactNode | React.ComponentType;
   builderComponent?: React.ComponentType<ChaiBlockComponentProps<T>>;
 
-  dataProvider?: (args: D) => K;
+  dataProvider?: (block: ChaiBlock, lang: string) => K;
 
   //props
   schema?: ChaiBlockSchema;
@@ -38,8 +38,9 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
   canBeNested?: (type: string) => boolean;
 }
 
-export interface ChaiServerBlockDefinition<T = Record<string, any>, K = Record<string, any>, D = Record<string, any>> {
+export interface ChaiServerBlockDefinition<T = Record<string, any>, K = Record<string, any>> {
   component: React.ComponentType<ChaiBlockComponentProps<T>>;
   type: string;
-  dataProvider?: (args: D) => Promise<K>;
+  dataProvider?: (block: ChaiBlock, lang: string, metadata?: any) => Promise<K>;
+  suspenseFallback?: React.ComponentType<any>;
 }

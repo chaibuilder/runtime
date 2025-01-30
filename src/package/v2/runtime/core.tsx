@@ -85,43 +85,38 @@ export const syncBlocksWithDefaults = (blocks: ChaiBlock[]): ChaiBlock[] => {
   });
 };
 
-const registerInternalBlock = <T, K, D>(
+const registerInternalBlock = <T, K>(
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
-  options: ChaiBlockDefinitionOptions<T, K, D>,
+  options: ChaiBlockDefinitionOptions<T, K>,
 ) => {
   set(REGISTERED_CHAI_BLOCKS, options.type, { component: component, ...options });
 };
 
-export type ChaiBlockDefinitionOptions<T, K, D> = Omit<ChaiBlockDefinition<T, K, D>, "component">;
+export type ChaiBlockDefinitionOptions<T, K> = Omit<ChaiBlockDefinition<T, K>, "component">;
 
 export const registerChaiBlock = <
   T extends Record<string, any> = Record<string, any>,
   K extends Record<string, any> = Record<string, any>,
-  D extends Record<string, any> = Record<string, any>,
 >(
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
-  options: ChaiBlockDefinitionOptions<T, K, D>,
+  options: ChaiBlockDefinitionOptions<T, K>,
 ) => {
-  registerInternalBlock<T, K, D>(component, { ...options, ...{ category: options.category || "custom" } });
+  registerInternalBlock<T, K>(component, { ...options, ...{ category: options.category || "custom" } });
 };
 
 export const registerChaiServerBlock = <
   T extends Record<string, any> = Record<string, any>,
   K extends Record<string, any> = Record<string, any>,
-  D extends Record<string, any> = Record<string, any>,
 >(
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
-  options: Pick<ChaiBlockDefinition<T, K, D>, "type" | "dataProvider">,
+  options: Pick<ChaiBlockDefinition<T, K>, "type" | "dataProvider">,
 ) => {
   set(REGISTERED_CHAI_BLOCKS, options.type, { component: component, ...options });
 };
 
-export const setChaiServerBlockOptions = <
-  K extends Record<string, any> = Record<string, any>,
-  D extends Record<string, any> = Record<string, any>,
->(
+export const setChaiServerBlockOptions = <K extends Record<string, any> = Record<string, any>>(
   type: keyof typeof REGISTERED_CHAI_BLOCKS,
-  options: { dataProvider: (args: D) => Promise<K> },
+  options: { dataProvider: (block: ChaiBlock, lang: string, metadata?: any) => Promise<K> },
 ) => {
   const registeredBlock = getRegisteredChaiBlock(type);
   set(REGISTERED_CHAI_BLOCKS, type, { ...registeredBlock, ...options });
