@@ -8,7 +8,7 @@ type HeadingProps = {
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-const Heading = (props: ChaiBlockComponentProps<HeadingProps>) => {
+export const Heading = (props: ChaiBlockComponentProps<HeadingProps>) => {
   return <div>{props.children}</div>;
 };
 
@@ -32,11 +32,58 @@ const schemas = registerChaiBlockSchema({
       ui: { "ui:widget": "textarea" },
     },
   },
+  allOf: [
+    {
+      if: {
+        properties: {
+          animal: {
+            const: "Cat",
+          },
+        },
+      },
+      then: {
+        properties: {
+          food: {
+            type: "string",
+            enum: ["meat", "grass", "fish"],
+          },
+        },
+        required: ["food"],
+      },
+    },
+    {
+      if: {
+        properties: {
+          animal: {
+            const: "Fish",
+          },
+        },
+      },
+      then: {
+        properties: {
+          food: {
+            type: "string",
+            enum: ["insect", "worms"],
+          },
+          water: {
+            type: "string",
+            enum: ["lake", "sea"],
+          },
+        },
+        required: ["food", "water"],
+      },
+    },
+    {
+      required: ["animal"],
+    },
+  ],
   //
   required: ["level"],
   dependencies: { level: ["content"] },
   ui: { "ui:order": ["level", "content"] },
 });
+
+console.log(schemas);
 
 registerChaiBlock(Heading, {
   type: "Heading",
