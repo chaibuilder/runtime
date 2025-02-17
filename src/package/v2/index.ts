@@ -13,6 +13,8 @@ type ChaiBlockPropSchema = RJSFSchema & {
 
 type ChaiBlockSchema = {
   properties?: Record<string, ChaiBlockPropSchema>;
+  allOf?: any[];
+  oneOf?: any[];
 } & Partial<Pick<ChaiBlockPropSchema, "required" | "dependencies" | "ui" | "title" | "description" | "default">>;
 
 type ChaiBlockSchemas = {
@@ -74,8 +76,16 @@ type ChaiClosestBlockProp<T> = T | undefined;
 
 export * from "./runtime/index.tsx";
 export type {
-  ChaiAsyncProp, ChaiBlock, ChaiBlockComponentProps, ChaiBlockDefinition, ChaiBlockPropSchema,
-  ChaiBlockSchema, ChaiBlockSchemas,
-  ChaiBlockUiSchema, ChaiDataProviderArgs, ChaiClosestBlockProp as ChaiRuntimeProp, ChaiServerBlockDefinition, ChaiStyles
+  ChaiAsyncProp,
+  ChaiBlock,
+  ChaiBlockComponentProps,
+  ChaiBlockDefinition,
+  ChaiBlockPropSchema,
+  ChaiBlockSchema,
+  ChaiBlockSchemas,
+  ChaiBlockUiSchema,
+  ChaiDataProviderArgs,
+  ChaiClosestBlockProp as ChaiRuntimeProp,
+  ChaiServerBlockDefinition,
+  ChaiStyles,
 };
-

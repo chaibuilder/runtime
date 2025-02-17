@@ -109,7 +109,7 @@ export const registerChaiServerBlock = <
   K extends Record<string, any> = Record<string, any>,
 >(
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
-  options: Pick<ChaiBlockDefinition<T, K>, "type" | "dataProvider">,
+  options: Pick<ChaiBlockDefinition<T, K>, "type" | "dataProvider" | "i18nProps" | "aiProps">,
 ) => {
   set(REGISTERED_CHAI_BLOCKS, options.type, { component: component, ...options });
 };
