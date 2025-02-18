@@ -63,8 +63,16 @@ export const stylesProp = (defaultClasses: string = ""): ChaiBlockPropSchema => 
 };
 
 export const runtimeProp = (options: ChaiBlockPropSchema): ChaiBlockPropSchema => {
+  console.warn("runtimeProp is deprecated, use builderProp instead");
   return {
     runtime: true,
+    ...options,
+  };
+};
+
+export const builderProp = (options: ChaiBlockPropSchema): ChaiBlockPropSchema => {
+  return {
+    builderProp: true,
     ...options,
   };
 };
