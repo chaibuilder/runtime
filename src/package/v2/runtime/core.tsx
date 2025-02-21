@@ -1,5 +1,5 @@
 import type { RJSFSchema, UiSchema } from "@rjsf/utils";
-import { cloneDeep, each, endsWith, get, has, keys, memoize, omitBy, pick, pickBy, set } from "lodash-es";
+import { cloneDeep, each, get, has, memoize, omitBy, set } from "lodash-es";
 import React, { useMemo } from "react";
 import type { ChaiBlockDefinition, ChaiServerBlockDefinition } from "../../controls/types.ts";
 import { ChaiBlockPropSchema } from "../index.ts";
@@ -75,11 +75,7 @@ export const syncBlocksWithDefaults = (blocks: ChaiBlock[]): ChaiBlock[] => {
   return blocks.map((block) => {
     if (has(REGISTERED_CHAI_BLOCKS, block._type)) {
       const defaults = getDefaultBlockProps(block._type);
-      return {
-        ...defaults,
-        ...pick(block, [...keys(defaults), ...["_type", "_id", "_name", "_parent", "_bindings"]]),
-        ...pickBy(block, (_, c) => endsWith(c, "_attrs")),
-      } as ChaiBlock;
+      return { ...defaults, ...block } as ChaiBlock;
     }
     return block;
   });
