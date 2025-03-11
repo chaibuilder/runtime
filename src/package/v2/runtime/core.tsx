@@ -85,7 +85,12 @@ const registerInternalBlock = <T, K>(
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
   options: ChaiBlockDefinitionOptions<T, K>,
 ) => {
-  set(REGISTERED_CHAI_BLOCKS, options.type, { component: component, ...options });
+  const existingBlock = get(REGISTERED_CHAI_BLOCKS, options.type);
+  if (existingBlock) {
+    set(REGISTERED_CHAI_BLOCKS, options.type, { ...existingBlock, component, ...options });
+  } else {
+    set(REGISTERED_CHAI_BLOCKS, options.type, { component, ...options });
+  }
 };
 
 export type ChaiBlockDefinitionOptions<T, K> = Omit<ChaiBlockDefinition<T, K>, "component">;
@@ -107,7 +112,12 @@ export const registerChaiServerBlock = <
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
   options: Pick<ChaiBlockDefinition<T, K>, "type" | "dataProvider" | "i18nProps" | "aiProps">,
 ) => {
-  set(REGISTERED_CHAI_BLOCKS, options.type, { component: component, ...options });
+  const existingBlock = get(REGISTERED_CHAI_BLOCKS, options.type);
+  if (existingBlock) {
+    set(REGISTERED_CHAI_BLOCKS, options.type, { ...existingBlock, component, ...options });
+  } else {
+    set(REGISTERED_CHAI_BLOCKS, options.type, { component, ...options });
+  }
 };
 
 export const setChaiServerBlockOptions = <K extends Record<string, any> = Record<string, any>>(
