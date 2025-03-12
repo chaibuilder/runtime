@@ -120,12 +120,12 @@ export const registerChaiServerBlock = <
   }
 };
 
-export const setChaiServerBlockOptions = <K extends Record<string, any> = Record<string, any>>(
+export const setChaiServerBlockDataProvider = <K extends Record<string, any> = Record<string, any>>(
   type: keyof typeof REGISTERED_CHAI_BLOCKS,
-  options: { dataProvider: (block: ChaiBlock, lang: string, metadata?: any) => Promise<K> },
+  dataProvider: (block: ChaiBlock, lang: string, metadata?: any) => Promise<K>,
 ) => {
   const registeredBlock = getRegisteredChaiBlock(type);
-  set(REGISTERED_CHAI_BLOCKS, type, { ...registeredBlock, ...options });
+  set(REGISTERED_CHAI_BLOCKS, type, { ...registeredBlock, dataProvider });
 };
 
 export const closestBlockProp = (blockType: keyof typeof REGISTERED_CHAI_BLOCKS, prop: string): ChaiBlockPropSchema => {

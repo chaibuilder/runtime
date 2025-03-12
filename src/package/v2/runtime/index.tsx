@@ -1,34 +1,34 @@
 import {
-  getRegisteredChaiBlock,
+  closestBlockProp,
+  getAIBlockProps,
+  getBlockFormSchemas,
   getDefaultBlockProps,
+  getI18nBlockProps,
+  getRegisteredChaiBlock,
   registerChaiBlock,
+  registerChaiServerBlock,
+  setChaiServerBlockDataProvider,
   syncBlocksWithDefaults,
   useRegisteredChaiBlock,
   useRegisteredChaiBlocks,
-  getAIBlockProps,
-  getI18nBlockProps,
-  getBlockFormSchemas,
-  registerChaiServerBlock,
-  closestBlockProp,
 } from "./core";
 
 export {
-  // hooks
-  useRegisteredChaiBlock,
-  useRegisteredChaiBlocks,
-
+  closestBlockProp,
+  getAIBlockProps,
+  getBlockFormSchemas,
+  getDefaultBlockProps,
+  getI18nBlockProps,
+  // getters
+  getRegisteredChaiBlock,
   // functions
   registerChaiBlock,
   registerChaiServerBlock,
-
-  // getters
-  getRegisteredChaiBlock,
-  getDefaultBlockProps,
-  getI18nBlockProps,
-  getAIBlockProps,
-  getBlockFormSchemas,
-  closestBlockProp,
+  setChaiServerBlockDataProvider,
 
   // helpers
   syncBlocksWithDefaults,
+  // hooks
+  useRegisteredChaiBlock,
+  useRegisteredChaiBlocks,
 };
