@@ -1,5 +1,5 @@
 import type { RJSFSchema, UiSchema } from "@rjsf/utils";
-import { cloneDeep, each, get, has, memoize, omitBy, set } from "lodash-es";
+import { cloneDeep, each, get, has, omitBy, set } from "lodash-es";
 import React, { useMemo } from "react";
 import type { ChaiBlockDefinition, ChaiServerBlockDefinition } from "../../controls/types.ts";
 import { ChaiBlockPropSchema } from "../index.ts";
@@ -33,13 +33,11 @@ export const useRegisteredChaiBlock = (type: keyof typeof REGISTERED_CHAI_BLOCKS
   return useMemo(() => get(REGISTERED_CHAI_BLOCKS, type, null), [type]);
 };
 
-export const getRegisteredChaiBlock = memoize(
-  (type: keyof typeof REGISTERED_CHAI_BLOCKS): ChaiBlockDefinition | null => {
-    return get(REGISTERED_CHAI_BLOCKS, type, null);
-  },
-) as any;
+export const getRegisteredChaiBlock = (type: keyof typeof REGISTERED_CHAI_BLOCKS): ChaiBlockDefinition | null => {
+  return get(REGISTERED_CHAI_BLOCKS, type, null);
+};
 
-export const getDefaultBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
+export const getDefaultBlockProps = (type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
   const properties = get(REGISTERED_CHAI_BLOCKS, `${type}.schema.properties`, {});
   const defaultProps: Record<string, any> = {};
   each(properties, (propSchema: ChaiBlockPropSchema, key) => {
@@ -49,27 +47,27 @@ export const getDefaultBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_
     set(defaultProps, key, propSchema.default);
   });
   return defaultProps;
-}) as any;
+};
 
-export const getI18nBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
+export const getI18nBlockProps = (type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
   return get(REGISTERED_CHAI_BLOCKS, `${type}.i18nProps`, []);
-}) as any;
+};
 
-export const getAIBlockProps = memoize((type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
+export const getAIBlockProps = (type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
   return get(REGISTERED_CHAI_BLOCKS, `${type}.aiProps`, []);
-}) as any;
+};
 
-export const getBlockFormSchemas = memoize(
-  (type: keyof typeof REGISTERED_CHAI_BLOCKS): { schema: RJSFSchema; uiSchema: UiSchema } => {
-    const registeredBlock = getRegisteredChaiBlock(type);
-    const schema = cloneDeep(registeredBlock.schema);
-    const properties = get(schema, "properties", {});
-    const nonStylesProperties = omitBy(properties, (prop) => prop.styles === true);
-    set(schema, "properties", nonStylesProperties);
-    const uiSchema = get(REGISTERED_CHAI_BLOCKS, `${type}.uiSchema`, {});
-    return { schema, uiSchema };
-  },
-) as any;
+export const getBlockFormSchemas = (
+  type: keyof typeof REGISTERED_CHAI_BLOCKS,
+): { schema: RJSFSchema; uiSchema: UiSchema } => {
+  const registeredBlock = getRegisteredChaiBlock(type);
+  const schema = cloneDeep(registeredBlock.schema);
+  const properties = get(schema, "properties", {});
+  const nonStylesProperties = omitBy(properties, (prop) => prop.styles === true);
+  set(schema, "properties", nonStylesProperties);
+  const uiSchema = get(REGISTERED_CHAI_BLOCKS, `${type}.uiSchema`, {});
+  return { schema, uiSchema };
+};
 
 export const syncBlocksWithDefaults = (blocks: ChaiBlock[]): ChaiBlock[] => {
   return blocks.map((block) => {
