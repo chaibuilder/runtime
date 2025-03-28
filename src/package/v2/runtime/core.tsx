@@ -6,10 +6,10 @@ import { ChaiBlockPropSchema } from "../index.ts";
 
 export type ChaiBlock<T = Record<string, string>> = {
   _id: string;
+  _type: string;
   _name?: string;
   _parent?: string | null | undefined;
   _bindings?: Record<string, string>;
-  _type: string;
 } & T;
 
 export type ChaiBlockComponentProps<T> = ChaiBlock<T> & {

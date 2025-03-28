@@ -13,6 +13,7 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
   group: string;
 
   // optional
+  description?: string;
   blocks?: ChaiBlock[] | (() => ChaiBlock[]);
   category?: string;
   wrapper?: boolean;
