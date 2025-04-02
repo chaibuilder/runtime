@@ -11,6 +11,7 @@ export type ChaiCustomFont = {
   fontWeight?: string;
   fontStyle?: string;
   fontDisplay?: string;
+  fontStretch?: string;
 };
 
 export type ChaiFont = ChaiGoogleFont | ChaiCustomFont;
@@ -83,13 +84,21 @@ const REGISTERED_FONTS: ChaiFont[] = [
   },
 ];
 
-export const registerChaiFont = <T extends ChaiFont>(fontName: string, font: T) => {
+export const registerChaiFont = (fontName: string, font: Omit<ChaiFont, "name">) => {
   REGISTERED_FONTS.unshift({
     name: fontName,
     ...font,
-  });
+  } as ChaiFont);
 };
 
 export const useRegisteredFonts = () => {
+  return REGISTERED_FONTS;
+};
+
+export const getRegisteredFont = (fontName: string) => {
+  return REGISTERED_FONTS.find((font) => font.name === fontName);
+};
+
+export const getAllRegisteredFonts = () => {
   return REGISTERED_FONTS;
 };
