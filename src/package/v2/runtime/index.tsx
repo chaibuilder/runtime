@@ -13,6 +13,8 @@ import {
   useRegisteredChaiBlocks,
 } from "./core";
 
+export * from "./fonts";
+
 export {
   closestBlockProp,
   getAIBlockProps,
