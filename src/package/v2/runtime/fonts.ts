@@ -1,10 +1,10 @@
-export type ChaiGoogleFont = {
+export type ChaiFontViaUrl = {
   family: string;
   url: string;
   fallback: string;
 };
 
-export type ChaiCustomFont = {
+export type ChaiFontViaSrc = {
   family: string;
   src: {
     url: string;
@@ -17,7 +17,7 @@ export type ChaiCustomFont = {
   fallback: string;
 };
 
-export type ChaiFont = ChaiGoogleFont | ChaiCustomFont;
+export type ChaiFont = ChaiFontViaUrl | ChaiFontViaSrc;
 
 const REGISTERED_FONTS: ChaiFont[] = [
   {
