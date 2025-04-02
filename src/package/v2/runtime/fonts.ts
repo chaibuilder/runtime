@@ -23,22 +23,22 @@ const REGISTERED_FONTS: ChaiFont[] = [
   {
     family: "Roboto",
     url: "https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap",
-    fallback: `"Roboto", sans-serif`,
+    fallback: `sans-serif`,
   },
   {
     family: "Inter",
     url: "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap",
-    fallback: `"Inter", sans-serif`,
+    fallback: `sans-serif`,
   },
   {
     family: "DM Sans",
     url: "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap",
-    fallback: `"DM Sans", sans-serif`,
+    fallback: `sans-serif`,
   },
   {
     family: "Open Sans",
     url: "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap",
-    fallback: `"Open Sans", sans-serif`,
+    fallback: `sans-serif`,
   },
   {
     family: "Lato",
