@@ -59,8 +59,11 @@ export const getAIBlockProps = (type: keyof typeof REGISTERED_CHAI_BLOCKS) => {
 
 export const getBlockFormSchemas = (
   type: keyof typeof REGISTERED_CHAI_BLOCKS,
-): { schema: RJSFSchema; uiSchema: UiSchema } => {
+): { schema: RJSFSchema; uiSchema: UiSchema } | null => {
   const registeredBlock = getRegisteredChaiBlock(type);
+  if (!registeredBlock) {
+    return null;
+  }
   const schema = cloneDeep(registeredBlock.schema);
   const properties = get(schema, "properties", {});
   const nonStylesProperties = omitBy(properties, (prop) => prop.styles === true);
