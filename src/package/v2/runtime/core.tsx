@@ -103,7 +103,7 @@ export const registerChaiBlock = <
   component: React.ComponentType<ChaiBlockComponentProps<T>>,
   options: ChaiBlockDefinitionOptions<T, K>,
 ) => {
-  registerInternalBlock<T, K>(component, { ...options, ...{ category: options.category || "custom" } });
+  registerInternalBlock<T, K>(component, { ...options, ...{ category: options.category || "core" } });
 };
 
 export const registerChaiServerBlock = <
