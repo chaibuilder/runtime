@@ -2,7 +2,7 @@ import type { RJSFSchema, UiSchema } from "@rjsf/utils";
 import { cloneDeep, each, get, has, omitBy, set } from "lodash-es";
 import React, { useMemo } from "react";
 import type { ChaiBlockDefinition, ChaiServerBlockDefinition } from "../../controls/types.ts";
-import { ChaiBlockPropSchema } from "../index.ts";
+import { ChaiBlockPropSchema, ChaiPageProps } from "../index.ts";
 
 export type ChaiBlock<T = Record<string, string>> = {
   _id: string;
@@ -18,6 +18,7 @@ export type ChaiBlockComponentProps<T> = ChaiBlock<T> & {
   inBuilder: boolean;
   lang: string;
   draft: boolean;
+  pageProps?: ChaiPageProps;
   //React Node
   children?: React.ReactNode;
 };

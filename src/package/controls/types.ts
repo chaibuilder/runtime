@@ -1,5 +1,5 @@
 import React from "react";
-import { ChaiBlock, ChaiBlockComponentProps, ChaiBlockSchema, ChaiBlockUiSchema } from "../v2/index.ts";
+import { ChaiBlock, ChaiBlockComponentProps, ChaiBlockSchema, ChaiBlockUiSchema, ChaiPageProps } from "../v2/index.ts";
 
 export type ChaiDataProviderArgs<T = Record<string, any>, K = Record<string, any>> = {
   block: ChaiBlock<T>;
@@ -28,7 +28,7 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
     draft: boolean;
     inBuilder: boolean;
     block: ChaiBlock<T>;
-    pageProps: K;
+    pageProps: ChaiPageProps;
   }) => K;
 
   //props
@@ -54,7 +54,7 @@ export interface ChaiServerBlockDefinition<T = Record<string, any>, K = Record<s
     inBuilder: boolean;
     lang: string;
     block: ChaiBlock<T>;
-    pageProps: K;
+    pageProps: ChaiPageProps;
   }) => Promise<K>;
   suspenseFallback?: React.ComponentType<any>;
 }
