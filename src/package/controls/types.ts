@@ -22,7 +22,8 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
   icon?: React.ReactNode | React.ComponentType;
   builderComponent?: React.ComponentType<ChaiBlockComponentProps<T>>;
 
-  dataProvider?: (block: ChaiBlock, lang: string) => K;
+  dataProvider?: (args: { lang: string; draft: boolean; inBuilder: boolean; [key: string]: any }) => K;
+  mockDataProvider?: (args: { lang: string; draft: boolean; inBuilder: boolean; [key: string]: any }) => K;
 
   //props
   schema?: ChaiBlockSchema;

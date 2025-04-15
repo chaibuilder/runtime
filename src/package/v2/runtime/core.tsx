@@ -126,7 +126,7 @@ export const registerChaiServerBlock = <
 
 export const setChaiServerBlockDataProvider = <K extends Record<string, any> = Record<string, any>>(
   type: keyof typeof REGISTERED_CHAI_BLOCKS,
-  dataProvider: (block: ChaiBlock, lang: string, metadata?: any) => Promise<K>,
+  dataProvider: (args: { lang: string; draft: boolean; inBuilder: boolean; [key: string]: any }) => Promise<K>,
 ) => {
   const registeredBlock = getRegisteredChaiBlock(type);
   set(REGISTERED_CHAI_BLOCKS, type, { ...registeredBlock, dataProvider });
