@@ -22,8 +22,14 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
   icon?: React.ReactNode | React.ComponentType;
   builderComponent?: React.ComponentType<ChaiBlockComponentProps<T>>;
 
-  dataProvider?: (args: { lang: string; draft: boolean; inBuilder: boolean; [key: string]: any }) => K;
-  mockDataProvider?: (args: { lang: string; draft: boolean; inBuilder: boolean; [key: string]: any }) => K;
+  dataProvider?: (args: { lang: string; draft: boolean; inBuilder: boolean; block: ChaiBlock<T>; pageProps: K }) => K;
+  mockDataProvider?: (args: {
+    lang: string;
+    draft: boolean;
+    inBuilder: boolean;
+    block: ChaiBlock<T>;
+    pageProps: K;
+  }) => K;
 
   //props
   schema?: ChaiBlockSchema;
@@ -43,6 +49,12 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
 export interface ChaiServerBlockDefinition<T = Record<string, any>, K = Record<string, any>> {
   component: React.ComponentType<ChaiBlockComponentProps<T>>;
   type: string;
-  dataProvider?: (args: { draft: boolean; inBuilder: boolean; lang: string; [key: string]: any }) => Promise<K>;
+  dataProvider?: (args: {
+    draft: boolean;
+    inBuilder: boolean;
+    lang: string;
+    block: ChaiBlock<T>;
+    pageProps: K;
+  }) => Promise<K>;
   suspenseFallback?: React.ComponentType<any>;
 }
