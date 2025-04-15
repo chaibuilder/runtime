@@ -13,10 +13,13 @@ export type ChaiBlock<T = Record<string, string>> = {
 } & T;
 
 export type ChaiBlockComponentProps<T> = ChaiBlock<T> & {
-  children?: React.ReactNode;
+  // Chai Block Props
   blockProps: Record<string, string>;
   inBuilder: boolean;
   lang: string;
+  draft: boolean;
+  //React Node
+  children?: React.ReactNode;
 };
 
 export type ChaiStyles = {

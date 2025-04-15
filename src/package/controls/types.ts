@@ -42,6 +42,6 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
 export interface ChaiServerBlockDefinition<T = Record<string, any>, K = Record<string, any>> {
   component: React.ComponentType<ChaiBlockComponentProps<T>>;
   type: string;
-  dataProvider?: (block: ChaiBlock, lang: string, metadata?: any) => Promise<K>;
+  dataProvider?: (args: { draft: boolean; inBuilder: boolean; lang: string; [key: string]: any }) => Promise<K>;
   suspenseFallback?: React.ComponentType<any>;
 }
