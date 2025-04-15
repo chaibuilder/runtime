@@ -95,7 +95,7 @@ registerChaiBlock(Heading, {
   ...registerChaiBlockSchema({
     properties: { name: stylesProp("") },
   }),
-  dataProvider: (block) => ({ richText: block.content + " from data provider" }),
+  dataProvider: ({ block }) => ({ richText: block.content + " from data provider" }),
 });
 
 registerChaiServerBlock(Heading, {
@@ -116,5 +116,5 @@ registerChaiBlock(Heading, {
   ...registerChaiBlockSchema({
     properties: { name: stylesProp("") },
   }),
-  dataProvider: (block) => ({ richText: block.content + " from data provider" }),
+  dataProvider: ({ block }) => ({ richText: block.content + " from data provider" }),
 });
