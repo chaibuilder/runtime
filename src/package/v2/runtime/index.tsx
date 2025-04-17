@@ -35,4 +35,6 @@ export {
   useRegisteredChaiBlocks,
 };
 
-export interface ChaiPageProps {}
+export interface ChaiPageProps {
+  [key: string]: any;
+}
