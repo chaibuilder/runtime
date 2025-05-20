@@ -14,6 +14,7 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
 
   // optional
   description?: string;
+  wrapper?: boolean;
   blocks?: ChaiBlock[] | (() => ChaiBlock[]);
   category?: string;
   hidden?: boolean | ((parentType?: string) => boolean);
