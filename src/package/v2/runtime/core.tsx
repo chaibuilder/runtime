@@ -14,6 +14,7 @@ export type ChaiBlock<T = Record<string, string>> = {
 
 export type ChaiBlockComponentProps<T> = ChaiBlock<T> & {
   // Chai Block Props
+  $loading?: boolean;
   blockProps: Record<string, string>;
   inBuilder: boolean;
   lang: string;

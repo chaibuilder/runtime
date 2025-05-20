@@ -36,5 +36,6 @@ export {
 };
 
 export interface ChaiPageProps {
-  [key: string]: any;
+  slug: string;
+  searchParams?: Record<string, string>;
 }

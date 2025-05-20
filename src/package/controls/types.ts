@@ -16,20 +16,12 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
   description?: string;
   blocks?: ChaiBlock[] | (() => ChaiBlock[]);
   category?: string;
-  wrapper?: boolean;
-  preview?: string;
   hidden?: boolean | ((parentType?: string) => boolean);
   icon?: React.ReactNode | React.ComponentType;
   builderComponent?: React.ComponentType<ChaiBlockComponentProps<T>>;
 
   dataProvider?: (args: { lang: string; draft: boolean; inBuilder: boolean; block: ChaiBlock<T>; pageProps: K }) => K;
-  mockDataProvider?: (args: {
-    lang: string;
-    draft: boolean;
-    inBuilder: boolean;
-    block: ChaiBlock<T>;
-    pageProps: ChaiPageProps;
-  }) => K;
+  dataProviderDependencies?: string[];
 
   //props
   schema?: ChaiBlockSchema;
