@@ -19,10 +19,16 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
   category?: string;
   hidden?: boolean | ((parentType?: string) => boolean);
   icon?: React.ReactNode | React.ComponentType;
-  builderComponent?: React.ComponentType<ChaiBlockComponentProps<T>>;
 
-  dataProvider?: (args: { lang: string; draft: boolean; inBuilder: boolean; block: ChaiBlock<T>; pageProps: K }) => K;
+  dataProviderMode?: "live" | "mock";
   dataProviderDependencies?: string[];
+  dataProvider?: (args: {
+    lang: string;
+    draft: boolean;
+    inBuilder: boolean;
+    block: ChaiBlock<T>;
+    pageProps: ChaiPageProps;
+  }) => K;
 
   //props
   schema?: ChaiBlockSchema;
@@ -30,6 +36,7 @@ export interface ChaiBlockDefinition<T = Record<string, any>, K = Record<string,
 
   i18nProps?: string[];
   aiProps?: string[];
+  inlineEditProps?: string[];
 
   // callbacks
   canAcceptBlock?: (type: string) => boolean;
