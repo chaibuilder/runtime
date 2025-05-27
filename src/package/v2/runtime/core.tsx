@@ -138,6 +138,9 @@ export const setChaiServerBlockDataProvider = <K extends Record<string, any> = R
   }) => Promise<K>,
 ) => {
   const registeredBlock = getRegisteredChaiBlock(type);
+  if (!registeredBlock) {
+    throw new Error(`Block ${type} not found`);
+  }
   set(REGISTERED_CHAI_BLOCKS, type, { ...registeredBlock, dataProvider });
 };
 
