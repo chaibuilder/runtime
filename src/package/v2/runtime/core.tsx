@@ -1,6 +1,7 @@
 import type { RJSFSchema, UiSchema } from "@rjsf/utils";
 import { cloneDeep, each, get, has, omitBy, set } from "lodash-es";
 import React, { useMemo } from "react";
+import { T } from "vitest/dist/chunks/environment.LoooBwUu.js";
 import type { ChaiBlockDefinition, ChaiServerBlockDefinition } from "../../controls/types.ts";
 import { ChaiBlockPropSchema, ChaiPageProps } from "../index.ts";
 
@@ -138,6 +139,17 @@ export const setChaiServerBlockDataProvider = <K extends Record<string, any> = R
 ) => {
   const registeredBlock = getRegisteredChaiBlock(type);
   set(REGISTERED_CHAI_BLOCKS, type, { ...registeredBlock, dataProvider });
+};
+
+export const setChaiBlockComponent = (
+  type: keyof typeof REGISTERED_CHAI_BLOCKS,
+  component: React.ComponentType<ChaiBlockComponentProps<T>>,
+) => {
+  const registeredBlock = getRegisteredChaiBlock(type);
+  if (!registeredBlock) {
+    throw new Error(`Block ${type} not found`);
+  }
+  set(REGISTERED_CHAI_BLOCKS, type, { ...registeredBlock, component });
 };
 
 export const closestBlockProp = (blockType: keyof typeof REGISTERED_CHAI_BLOCKS, prop: string): ChaiBlockPropSchema => {

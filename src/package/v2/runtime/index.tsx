@@ -7,6 +7,7 @@ import {
   getRegisteredChaiBlock,
   registerChaiBlock,
   registerChaiServerBlock,
+  setChaiBlockComponent,
   setChaiServerBlockDataProvider,
   syncBlocksWithDefaults,
   useRegisteredChaiBlock,
@@ -14,6 +15,8 @@ import {
 } from "./core";
 
 export * from "./fonts";
+
+const setChaiBlockDataProvider = setChaiServerBlockDataProvider;
 
 export {
   closestBlockProp,
@@ -26,8 +29,9 @@ export {
   // functions
   registerChaiBlock,
   registerChaiServerBlock,
+  setChaiBlockComponent,
+  setChaiBlockDataProvider,
   setChaiServerBlockDataProvider,
-
   // helpers
   syncBlocksWithDefaults,
   // hooks
